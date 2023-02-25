@@ -1,0 +1,60 @@
+{% load custom_tags %}
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+
+<script>
+    var xValues = []
+    var yValues = []
+
+    // {% for item in day %}
+    xValues.push({{ item.date__day }}+" " + "{{ item.date__month|month_name }}")
+    yValues.push({{ item.category_sum }})
+    // {% endfor %}
+
+
+    console.log(xValues)
+    console.log(yValues)
+
+    new Chart("myChart", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: "Spend per day",
+                display: true,
+                fill: false,
+                backgroundColor: "rgba(255,0,0,1.0)",
+                borderColor: "rgba(0,0,255,0.5)",
+                data: yValues
+            }]
+        },
+        options: {
+            legend: {
+                display: true,
+                labelString: "heh",
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Amount Spend (Rs)'
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Day'
+                    }
+                }],
+            },
+        }
+    });
+</script>
+
+{% for i in cat_wise%}
+<p>{{i}} </p>
+{% endfor %}
+
+</html>

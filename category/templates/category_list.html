@@ -1,0 +1,11 @@
+<html>
+<ul>
+    {% for i in category_list %}
+    <li>{{i.name}}</li>
+    <a href="{% url 'info' i.pk %}">link</a>
+    <a href="{% url 'cat_update' i.pk %}">ulink</a>
+    <a href="{% url 'cat_delete' i.pk %}">dlink</a>
+    {% endfor %}
+</ul>
+
+</html>
