@@ -33,12 +33,9 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            <a href="#" class="form-footer m-3">Forgot Password?</a>
                         </div>
                         <button id="submit" type="submit" value="submit" class="btn-primary btn col-12">Submit</button>
                     </form>
-                    <p class="form-ex text-center">Not registered? <a href="{% url 'signup' %}">Create an account</a>
-                    </p>
                     <span style="color: rgb(206, 45, 45);">
                         {% for field in form %}
                         {% for error in field.errors %}

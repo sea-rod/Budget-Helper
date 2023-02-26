@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
+from django.shortcuts import render
 from django.db.models import Sum
-from django.db.models.functions import ExtractMonth
 from .models import category, category_info
 from .form import CatCreateForm
 
@@ -11,6 +11,11 @@ class CatView(ListView):
 
     def get_queryset(self):
         return category.objects.filter(user=self.request.user)
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super().get(request, *args, **kwargs)
+        return render(request, "home.html")
 
 
 class CatCreateView(CreateView):
