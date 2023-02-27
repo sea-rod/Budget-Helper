@@ -8,9 +8,9 @@
     var xValues = []
     var yValues = []
 
-    // {% for item in day %}
-    xValues.push({{ item.date__day }}+" " + "{{ item.date__month|month_name }}")
-    yValues.push({{ item.category_sum }})
+    // {% for obj in category.category_info_set.all %}
+    xValues.push("{{ obj.date|date:"d M" }}")
+    yValues.push({{ obj.spend }})
     // {% endfor %}
 
 
@@ -53,8 +53,14 @@
     });
 </script>
 
-{% for i in cat_wise%}
-<p>{{i}} </p>
-{% endfor %}
+
+<p>{{category.name}} </p>
+<p> {{category.budget}} budget</p>
+
+{% for i in category.category_info_set.all %}
+<p>{{i.spend}}</p>
+<p>{{i.item}}</p>
+<p>{{i.date|date:"d D M"}}</p>
+{% endfor%}
 
 </html>

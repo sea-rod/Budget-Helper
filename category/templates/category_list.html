@@ -1,4 +1,6 @@
-<html>
+{% extends 'base.html' %}
+
+{% block content %}
 <ul>
     {% for i in category_list %}
     <li>{{i.name}}</li>
@@ -7,5 +9,4 @@
     <a href="{% url 'cat_delete' i.pk %}">dlink</a>
     {% endfor %}
 </ul>
-
-</html>
+{% endblock content %}
