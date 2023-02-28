@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="{% static 'css/regis.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
+    {% block additional %}
+    {% endblock additional %}
+
     <title>{%block title%}Home{% endblock title %}</title>
 </head>
 
@@ -31,7 +34,6 @@
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
 
             <div class="navbar-nav ml-auto">

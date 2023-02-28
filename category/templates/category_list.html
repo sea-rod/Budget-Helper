@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block additional %}
+
+<script src="{% static 'js/side-bar.js' %}"></script>
+{% endblock additional %}
+
 {% block content %}
+<div id="menu" class="side-bar">
+    <ul>
+        <li data-image="menu">Menu</li>
+        {% for cat in category_list %}
+        <a href="{% url 'info' cat.pk %}">
+            <li>{{cat.name}}</li>
+        </a>
+        {% endfor %}
+    </ul>
+</div>
 <ul>
-    {% for i in category_list %}
+    <!-- {% for i in category_list %}
     <li>{{i.name}}</li>
     <a href="{% url 'info' i.pk %}">link</a>
     <a href="{% url 'cat_update' i.pk %}">ulink</a>
     <a href="{% url 'cat_delete' i.pk %}">dlink</a>
-    {% endfor %}
+    {% endfor %} -->
 </ul>
 {% endblock content %}

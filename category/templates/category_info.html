@@ -9,7 +9,7 @@
     var yValues = []
 
     // {% for obj in category.category_info_set.all %}
-    xValues.push("{{ obj.date|date:"d M" }}")
+    xValues.push("{{ obj.date|date:'d M' }}")
     yValues.push({{ obj.spend }})
     // {% endfor %}
 

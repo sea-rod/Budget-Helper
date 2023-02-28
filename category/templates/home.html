@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-
+{% load static %}
 {% block content %}
-<div style="display: flex;">
-    <div class="text-white m-5" style="width: 50%;">
+<div class="row" style="margin: 0px;">
+    <div class="col-sm-6 text-white">
         <h2 class="text-center">lorem ipsum</h2>
         <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, quae corrupti nemo saepe expedita, et magni
@@ -26,8 +26,8 @@
             tempora.
         </p>
     </div>
-    <div class="text-white" style="width: 50%;margin: 5px auto;">
-        <img src="" alt="Image Here">
+    <div class="col-sm-6">
+        <img src="{% static 'img/home.jpg' %}" alt="Image Here">
     </div>
 </div>
 {% load static %}
