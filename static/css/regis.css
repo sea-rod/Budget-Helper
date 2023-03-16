@@ -1,3 +1,4 @@
+/** login signup */
 #signup:hover {
     background-color: rgb(161, 161, 161);
 }
@@ -38,6 +39,7 @@ img {
     color: rgb(148, 148, 224);
 }
 
+/** side-bar */
 .side-bar {
     padding: 10px;
     height: 100%;
@@ -88,8 +90,6 @@ li {
 
 .side-bar li {
     list-style-type: none;
-    font-size: larger;
-    margin-left: -30px;
     display: block;
     color: rgb(226, 226, 226);
     background-repeat: no-repeat;
@@ -101,9 +101,23 @@ li {
 }
 
 li[data-image="menu"] {
-    background-image: url("data: image/svg+xml, %3csvg xmlns='http://www.w3.org…dth=' 2' d=' M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-image: url("/static/img/menu.png");
 }
 
+
+/*  adding updating container */
+
+.cat-container {
+    background-color: rgb(58, 58, 58);
+    padding: 50px 30px;
+    margin: 100px auto;
+    width: 500px;
+    border-radius: 10px;
+}
+
+.cat-fields {
+    border-radius: 10px;
+}
 
 @media (max-width: 640px) {
     #img-div {

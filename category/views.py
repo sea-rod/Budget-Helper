@@ -9,7 +9,7 @@ from django.views.generic import (
 from django.shortcuts import render
 from django.db.models import Sum
 from .models import category, category_info
-from .form import CatCreateForm
+from .form import CatCreateForm, CatInfoForm
 
 
 class CatView(ListView):
@@ -43,6 +43,15 @@ class CatUpdateView(UpdateView):
     model = category
     template_name = "category_add_update.html"
     form_class = CatCreateForm
+
+    def form_valid(self, form):
+        budget = form.cleaned_data["budget"]
+        if budget <= 0:
+            form.add_error("budget", " budget Value must be greater than zero")
+            return self.form_invalid(form)
+
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class CatDeleteView(DeleteView):
@@ -78,6 +87,17 @@ class CatViewInfo(DetailView):
     #     return dic
 
 
+# to add the spendings
 class CatInfoAddView(CreateView):
     model = category_info
-    fields = ("cat", "spend", "item")
+    form_class = CatInfoForm
+    template_name = "category_add_update.html"
+
+    def form_valid(self, form):
+        budget = form.cleaned_data["spend"]
+        if budget <= 0:
+            form.add_error("spend", " spend Value must be greater than zero")
+            return self.form_invalid(form)
+
+        form.instance.user = self.request.user
+        return super().form_valid(form)

@@ -1,8 +1,38 @@
-<html>
-<form action="" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="confirm">
-</form>
+{% extends 'base.html' %}
 
-</html>
+{% block content %}
+<div class="container">
+    <div class="cat-container" style="color:aliceblue;">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for fields in form %}
+            <div class="row" style="margin: 10px 0;">
+
+                <div class="offset-md-1 col-2">
+                    {{ fields.label }}
+                </div>
+                <div class="col-8">
+                    {{ fields }}
+                </div>
+
+            </div>
+            {% endfor %}
+            <input type="submit" class="btn btn-primary offset-md-1" value="confirm">
+        </form>
+        <span style="color: rgb(206, 45, 45);">
+            {% for field in form %}
+            {% for error in field.errors %}
+            <div class="alert alert-danger" style="margin-top: 50px;">
+                <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %}
+        </span>
+    </div>
+</div>
+{% endblock content %}

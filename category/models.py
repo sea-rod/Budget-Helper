@@ -23,3 +23,6 @@ class category_info(models.Model):
 
     def __str__(self) -> str:
         return f"{self.cat}_info {self.date.ctime()}"
+
+    def get_absolute_url(self):
+        return reverse_lazy("home")

@@ -31,7 +31,8 @@
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
         <a href="#" class="navbar-brand"><i class="fa fa-cube"></i>Brand<b>Name</b></a>
         {% if user.is_authenticated %}
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <button type="button" class="navbar-toggler col-2" data-toggle="collapse" data-target="#navbarCollapse"
+            style="padding: 0;">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
@@ -39,7 +40,9 @@
             <div class="navbar-nav ml-auto">
                 <a href="#" class="nav-item nav-link"><i class="fa fa-home"></i><span>Home</span></a>
                 <a href="#" class="nav-item nav-link"><i class="fa fa-pie-chart"></i><span>Reports</span></a>
-                <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>Messages</span></a>
+                <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>Message</span></a>
+                <a href="{% url 'cat_info_add' %}" class="nav-item nav-link"><i
+                        class="fa fa-dollar"></i><span>spend</span></a>
                 <div class="nav-item dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img
                             sizes="21,12" src="{{ user.profile_pic.url }}" class="avatar" alt="Avatar">
@@ -48,6 +51,7 @@
                         <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                        <a href="{% url 'cat_add' %}" class="dropdown-item"><i class="fa fa-plus"></i> Add Category</a>
                         <div class="divider dropdown-divider"></div>
                         <a href="{% url 'logout' %}" class="dropdown-item"><i class="material-icons">&#xE8AC;</i>
                             Logout</a>

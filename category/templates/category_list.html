@@ -12,9 +12,11 @@
     <ul>
         <li data-image="menu">Menu</li>
         {% for cat in category_list %}
-        <a href="{% url 'info' cat.pk %}">
-            <li>{{cat.name}}</li>
-        </a>
+        <li>
+            <a href="{% url 'info' cat.pk %}">
+                {{cat.name}}
+            </a>
+        </li>
         {% endfor %}
     </ul>
 </div>
