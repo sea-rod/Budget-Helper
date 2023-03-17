@@ -6,18 +6,18 @@
         <form action="" method="post">
             {% csrf_token %}
             {% for fields in form %}
-            <div class="row" style="margin: 10px 0;">
+            <div class=" row" style="margin: 10px 0;">
 
-                <div class="offset-md-1 col-2">
+                <div class=" col-4" style="margin: 0;">
                     {{ fields.label }}
                 </div>
-                <div class="col-8">
+                <div class="col-7">
                     {{ fields }}
                 </div>
 
             </div>
             {% endfor %}
-            <input type="submit" class="btn btn-primary offset-md-1" value="confirm">
+            <input type="submit" class="btn btn-primary" value="confirm">
         </form>
         <span style="color: rgb(206, 45, 45);">
             {% for field in form %}

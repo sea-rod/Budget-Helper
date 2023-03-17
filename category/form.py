@@ -27,9 +27,10 @@ class CatCreateForm(forms.ModelForm):
 
 
 class CatInfoForm(forms.ModelForm):
+    user = None
     cat = forms.ModelChoiceField(
         label="Category",
-        queryset=category.objects.all(),
+        queryset=category.objects.filter(user=user),
         widget=forms.Select(
             attrs={
                 "class": "form-control cat-fields",
@@ -56,3 +57,9 @@ class CatInfoForm(forms.ModelForm):
     class Meta:
         model = category_info
         fields = ("cat", "spend", "item")
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs["user"]
+        del kwargs["user"]
+        super(CatInfoForm, self).__init__(*args, **kwargs)
+        self.fields["cat"].queryset = category.objects.filter(user=user)

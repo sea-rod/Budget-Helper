@@ -6,17 +6,32 @@ from django.views.generic import (
     UpdateView,
     DetailView,
 )
-from django.shortcuts import render
+
 from django.db.models import Sum
+from django.shortcuts import render
 from .models import category, category_info
 from .form import CatCreateForm, CatInfoForm
 
 
-class CatView(ListView):
+class CatInfoListView(ListView):
     template_name = "category_list.html"
 
     def get_queryset(self):
-        return category.objects.filter(user=self.request.user)
+        return category_info.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        total = category.objects.filter(user=self.request.user).aggregate(Sum("budget"))
+        left = category.objects.filter(user=self.request.user).aggregate(
+            Sum("amt_left")
+        )
+        spend = category_info.objects.filter(user=self.request.user).aggregate(
+            Sum("spend")
+        )
+
+        context = super().get_context_data(**kwargs)
+        context = context | total | left | spend
+
+        return context
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -35,6 +50,7 @@ class CatCreateView(CreateView):
             form.add_error("budget", " budget Value must be greater than zero")
             return self.form_invalid(form)
 
+        form.instance.amt_left = budget
         form.instance.user = self.request.user
         return super().form_valid(form)
 
@@ -49,7 +65,7 @@ class CatUpdateView(UpdateView):
         if budget <= 0:
             form.add_error("budget", " budget Value must be greater than zero")
             return self.form_invalid(form)
-
+        form.instance.amt_left = budget
         form.instance.user = self.request.user
         return super().form_valid(form)
 
@@ -94,10 +110,20 @@ class CatInfoAddView(CreateView):
     template_name = "category_add_update.html"
 
     def form_valid(self, form):
-        budget = form.cleaned_data["spend"]
-        if budget <= 0:
+        spend = form.cleaned_data["spend"]
+        cat = form.cleaned_data["cat"]
+        if spend <= 0:
             form.add_error("spend", " spend Value must be greater than zero")
             return self.form_invalid(form)
 
+        obj = category.objects.get(name=cat, user=self.request.user)
+        obj.amt_left -= spend
+        obj.save()
+
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs

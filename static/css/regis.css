@@ -119,7 +119,52 @@ li[data-image="menu"] {
     border-radius: 10px;
 }
 
+/* spend list on home page */
+
+.spend-head {
+    background-color: rgb(226, 226, 226);
+    color: rgb(31, 31, 31);
+    padding: 10px 30px;
+    text-align: center;
+    margin: 10px 20%;
+    border-radius: 10px;
+}
+
+
+.spend-card {
+    background-color: rgb(226, 226, 226);
+    color: rgb(31, 31, 31);
+    padding: 10px 30px;
+    text-align: center;
+    margin: 0px 20%;
+    border: 1px solid black;
+    border-radius: 10px;
+    /* margin-top: 200px; */
+}
+
+#btn-a {
+    margin-top: 100px;
+    margin-bottom: 10px;
+    margin-right: 20%;
+}
+
 @media (max-width: 640px) {
+    .spend-head {
+        padding: 10px 30px;
+        margin: 10px 10px;
+    }
+
+    #btn-a {
+        margin-right: 10px;
+    }
+
+    .spend-card {
+        padding: 10px 30px;
+        text-align: center;
+        margin: 10px 10px;
+    }
+
+
     #img-div {
         display: none;
     }

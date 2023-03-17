@@ -8,24 +8,46 @@
 {% endblock additional %}
 
 {% block content %}
-<div id="menu" class="side-bar">
-    <ul>
-        <li data-image="menu">Menu</li>
-        {% for cat in category_list %}
-        <li>
-            <a href="{% url 'info' cat.pk %}">
-                {{cat.name}}
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
+<div>
+
+    <div class="spend-head">
+        <div class="row">
+            <div class="col-4">
+                <h3>&#8377 {{ budget__sum }}</h3>
+                <p>Total budget</p>
+            </div>
+            {% if amt_left__sum < 0 %} <div class="col-4 text-danger">
+                <h3>&#8377 {{ amt_left__sum }}</h3>
+                <p>Left budget</p>
+        </div>
+        {% else %}
+        <div class="col-4 text-success">
+            <h3>&#8377 {{ amt_left__sum }}</h3>
+            <p>Left budget</p>
+        </div>
+        {%endif%}
+        <div class="col-4">
+            <h3>&#8377 {{ spend__sum }}</h3>
+            <p>Spent budget</p>
+        </div>
+    </div>
 </div>
-<ul>
-    <!-- {% for i in category_list %}
-    <li>{{i.name}}</li>
-    <a href="{% url 'info' i.pk %}">link</a>
-    <a href="{% url 'cat_update' i.pk %}">ulink</a>
-    <a href="{% url 'cat_delete' i.pk %}">dlink</a>
-    {% endfor %} -->
-</ul>
+
+<div id="btn-a" style="text-align: right;">
+    {%if category_info_list%}
+    <a href="{% url 'cat_info_add' %}" class="btn btn-primary">+Add</a>
+    {% endif %}
+</div>
+{% for i in category_info_list %}
+<div class="spend-card">
+    <div class="row">
+        <h5 class="col-3">{{i.item}}</h5>
+        <h5 class="col-3">{{i.cat}}</h5>
+        <h5 class="col-3">{{i.date|date:"d D M Y"}}</h5>
+        <h5 class="col-3">&#8377 {{i.spend}}</h5>
+    </div>
+</div>
+{% endfor %}
+
+</div>
 {% endblock content %}
