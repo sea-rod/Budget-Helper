@@ -13,31 +13,37 @@
     <div class="spend-head">
         <div class="row">
             <div class="col-4">
-                <h3>&#8377 {{ budget__sum }}</h3>
+                <h3>&#8377 {{ budget|floatformat:2 }}</h3>
                 <p>Total budget</p>
             </div>
-            {% if amt_left__sum < 0 %} <div class="col-4 text-danger">
-                <h3>&#8377 {{ amt_left__sum }}</h3>
+            {% if amt_left < 0 %} <div class="col-4 text-danger">
+                <h3>&#8377 {{ amt_left|floatformat:2 }}</h3>
                 <p>Left budget</p>
         </div>
         {% else %}
         <div class="col-4 text-success">
-            <h3>&#8377 {{ amt_left__sum }}</h3>
+            <h3>&#8377 {{ amt_left|floatformat:2 }}</h3>
             <p>Left budget</p>
         </div>
         {%endif%}
         <div class="col-4">
-            <h3>&#8377 {{ spend__sum }}</h3>
+            <h3>&#8377 {{ spend|floatformat:2 }}</h3>
             <p>Spent budget</p>
         </div>
     </div>
 </div>
 
+{%if category_info_list%}
 <div id="btn-a" style="text-align: right;">
-    {%if category_info_list%}
-    <a href="{% url 'cat_info_add' %}" class="btn btn-primary">+Add</a>
-    {% endif %}
+    <a href="{% url 'cat_info_add' %}" class="btn btn-primary">+ Add</a>
 </div>
+{% else %}
+<a href="{% url 'cat_info_add' %}" style="color: rgb(129, 129, 129);font-size: larger;">
+    <div id="add-container">
+        <b>+ Add Spending</b>
+    </div>
+</a>
+{% endif %}
 {% for i in category_info_list %}
 <div class="spend-card">
     <div class="row">

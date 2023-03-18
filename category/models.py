@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 class category(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    budget = models.FloatField()
+    budget = models.FloatField(default=0)
     amt_left = models.FloatField(default=0)
 
     def __str__(self) -> str:

@@ -8,6 +8,7 @@ from django.views.generic import (
 )
 
 from django.db.models import Sum
+from django.db.models.functions import Coalesce
 from django.shortcuts import render
 from .models import category, category_info
 from .form import CatCreateForm, CatInfoForm
@@ -20,18 +21,18 @@ class CatInfoListView(ListView):
         return category_info.objects.filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):
-        total = category.objects.filter(user=self.request.user).aggregate(Sum("budget"))
-        left = category.objects.filter(user=self.request.user).aggregate(
-            Sum("amt_left")
+        total = category.objects.filter(user=self.request.user).aggregate(
+            budget=Coalesce(
+                Sum("budget"),
+                0.0,
+            ),
+            amt_left=Coalesce(Sum("amt_left"), 0.00),
         )
         spend = category_info.objects.filter(user=self.request.user).aggregate(
-            Sum("spend")
+            spend=Coalesce(Sum("spend"), 0.0)
         )
 
-        context = super().get_context_data(**kwargs)
-        context = context | total | left | spend
-
-        return context
+        return super().get_context_data(**kwargs) | total | spend
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:

@@ -148,6 +148,24 @@ li[data-image="menu"] {
     margin-right: 20%;
 }
 
+/*  home page if no list is empty */
+#add-container {
+    text-align: center;
+    margin: 150px 30%;
+    padding: 70px 10px;
+    border: 4px dashed rgb(129, 129, 129);
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+#add-container:hover {
+    background-color: rgb(58, 58, 58);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 @media (max-width: 640px) {
     .spend-head {
         padding: 10px 30px;
