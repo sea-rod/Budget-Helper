@@ -128,3 +128,17 @@ class CatInfoAddView(CreateView):
         kwargs = super().get_form_kwargs()
         kwargs["user"] = self.request.user
         return kwargs
+
+
+# delete view
+class CatInfoDeleteView(DeleteView):
+    model = category_info
+    template_name = "category_delete.html"
+    success_url = reverse_lazy("home")
+
+    def post(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.cat.amt_left += obj.spend
+        obj.cat.save()
+
+        return super().post(request, *args, **kwargs)

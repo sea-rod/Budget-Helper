@@ -50,7 +50,8 @@
         <h5 class="col-3">{{i.item}}</h5>
         <h5 class="col-3">{{i.cat}}</h5>
         <h5 class="col-3">{{i.date|date:"d D M Y"}}</h5>
-        <h5 class="col-3">&#8377 {{i.spend}}</h5>
+        <h5 class="col-2">&#8377 {{i.spend}}</h5>
+        <a href="{% url 'cat_info_delete' i.pk %}"><span class="col-1 text-danger"><b>X</b></span></a>
     </div>
 </div>
 {% endfor %}
