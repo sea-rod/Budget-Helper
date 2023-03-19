@@ -5,19 +5,19 @@
     <div class="cat-container" style="color:aliceblue;">
         <form action="" method="post">
             {% csrf_token %}
-            {% for fields in form %}
-            <div class=" row" style="margin: 10px 0;">
+            <div class="row">
+                {% for fields in form %}
 
-                <div class=" col-4" style="margin: 0;">
+                <div class="col-5" style="margin: 5px auto;">
                     {{ fields.label }}
                 </div>
-                <div class="col-7">
+                <div class="col-7" style="margin: 5px auto;">
                     {{ fields }}
                 </div>
 
+                {% endfor %}
+                <input type="submit" class="ml-3 btn btn-primary" value="confirm">
             </div>
-            {% endfor %}
-            <input type="submit" class="btn btn-primary" value="confirm">
         </form>
         <span style="color: rgb(206, 45, 45);">
             {% for field in form %}

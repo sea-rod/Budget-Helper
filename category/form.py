@@ -7,7 +7,8 @@ class CatCreateForm(forms.ModelForm):
         label="Category Name",
         widget=forms.TextInput(
             attrs={
-                "class": "some_class",
+                "class": "form-control cat-fields",
+                "placeholder": "e.g Bills",
             }
         ),
     )
@@ -16,7 +17,8 @@ class CatCreateForm(forms.ModelForm):
         label="Budget for this month",
         widget=forms.NumberInput(
             attrs={
-                "class": "some_class",
+                "class": "form-control cat-fields",
+                "placeholder": "e.g 1000",
             }
         ),
     )
@@ -42,6 +44,7 @@ class CatInfoForm(forms.ModelForm):
         widget=forms.NumberInput(
             attrs={
                 "class": "form-control cat-fields",
+                "placeholder": "e.g 1000",
             }
         ),
     )
@@ -50,6 +53,7 @@ class CatInfoForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control cat-fields",
+                "placeholder": "e.g Electricity bill",
             }
         ),
     )

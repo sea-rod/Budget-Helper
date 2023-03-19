@@ -108,7 +108,7 @@ class CatViewInfo(DetailView):
 class CatInfoAddView(CreateView):
     model = category_info
     form_class = CatInfoForm
-    template_name = "category_add_update.html"
+    template_name = "category_info_add_update.html"
 
     def form_valid(self, form):
         spend = form.cleaned_data["spend"]

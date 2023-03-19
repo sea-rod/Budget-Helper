@@ -38,11 +38,11 @@
                 <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>Message</span></a>
                 <a href="{% url 'cat_info_add' %}" class="nav-item nav-link"><i
                         class="fa fa-dollar"></i><span>spend</span></a>
-                <div class="nav-item dropdown">
+                <div class="nav-item dropdown col-4">
                     <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img
                             sizes="21,12" src="{{ user.profile_pic.url }}" class="avatar" alt="Avatar">
-                        {{ user.username }} <b class="caret"></b></a>
-                    <div class="dropdown-menu">
+                        {{user.username}} <b class="caret"></b></a>
+                    <div class="dropdown-menu" style="left:-20px">
                         <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
