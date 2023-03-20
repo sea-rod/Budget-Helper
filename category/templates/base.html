@@ -45,7 +45,7 @@
                     <div class="dropdown-menu" style="left:-20px">
                         <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
-                        <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                        <a href="{% url 'cat_list' %}" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                         <a href="{% url 'cat_add' %}" class="dropdown-item"><i class="fa fa-plus"></i> Add Category</a>
                         <div class="divider dropdown-divider"></div>
                         <a href="{% url 'logout' %}" class="dropdown-item"><i class="material-icons">&#xE8AC;</i>

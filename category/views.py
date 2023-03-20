@@ -14,30 +14,12 @@ from .models import category, category_info
 from .form import CatCreateForm, CatInfoForm
 
 
-class CatInfoListView(ListView):
+class CatListView(ListView):
+    model = category
     template_name = "category_list.html"
 
     def get_queryset(self):
-        return category_info.objects.filter(user=self.request.user)
-
-    def get_context_data(self, **kwargs):
-        total = category.objects.filter(user=self.request.user).aggregate(
-            budget=Coalesce(
-                Sum("budget"),
-                0.0,
-            ),
-            amt_left=Coalesce(Sum("amt_left"), 0.00),
-        )
-        spend = category_info.objects.filter(user=self.request.user).aggregate(
-            spend=Coalesce(Sum("spend"), 0.0)
-        )
-
-        return super().get_context_data(**kwargs) | total | spend
-
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return super().get(request, *args, **kwargs)
-        return render(request, "home.html")
+        return category.objects.filter(user=self.request.user)
 
 
 class CatCreateView(CreateView):
@@ -66,7 +48,10 @@ class CatUpdateView(UpdateView):
         if budget <= 0:
             form.add_error("budget", " budget Value must be greater than zero")
             return self.form_invalid(form)
-        form.instance.amt_left = budget
+        spend = category_info.objects.filter(user=self.request.user).aggregate(
+            spend=Coalesce(Sum("spend"), 0.0)
+        )["spend"]
+        form.instance.amt_left = budget - spend
         form.instance.user = self.request.user
         return super().form_valid(form)
 
@@ -79,7 +64,7 @@ class CatDeleteView(DeleteView):
 
 class CatViewInfo(DetailView):
     model = category
-    template_name = "category_info.html"
+    template_name = "category_detail.html"
     # context_object_name = "category_list"
 
     # def get_queryset(self):
@@ -102,6 +87,32 @@ class CatViewInfo(DetailView):
     #     dic["month"] = month
     #     dic["day"] = day
     #     return dic
+
+
+class CatInfoListView(ListView):
+    template_name = "category_info_list.html"
+
+    def get_queryset(self):
+        return category_info.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        total = category.objects.filter(user=self.request.user).aggregate(
+            budget=Coalesce(
+                Sum("budget"),
+                0.0,
+            ),
+            amt_left=Coalesce(Sum("amt_left"), 0.00),
+        )
+        spend = category_info.objects.filter(user=self.request.user).aggregate(
+            spend=Coalesce(Sum("spend"), 0.0)
+        )
+
+        return super().get_context_data(**kwargs) | total | spend
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super().get(request, *args, **kwargs)
+        return render(request, "home.html")
 
 
 # to add the spendings

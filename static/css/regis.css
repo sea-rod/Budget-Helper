@@ -166,6 +166,26 @@ a:hover {
     text-decoration: none;
 }
 
+/* cat list view */
+
+.cat-list {
+    background-color: rgb(177, 177, 177);
+    margin: 10px auto;
+    padding: 20px 40px;
+    color: rgb(24, 24, 24);
+    text-align: center;
+    border-radius: 20px;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.cat-list:hover {
+    background-color: rgb(105, 105, 105);
+    font-size: 20px;
+    transition: 1s;
+}
+
+
 @media (max-width: 640px) {
     .spend-head {
         padding: 10px 30px;

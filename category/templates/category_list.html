@@ -1,60 +1,17 @@
 {% extends 'base.html' %}
-
-{% load static %}
-
-{% block additional %}
-
-<script src="{% static 'js/side-bar.js' %}"></script>
-{% endblock additional %}
-
 {% block content %}
-<div>
-
-    <div class="spend-head">
-        <div class="row">
-            <div class="col-4">
-                <h3>&#8377 {{ budget|floatformat:2 }}</h3>
-                <p>Total budget</p>
-            </div>
-            {% if amt_left < 0 %} <div class="col-4 text-danger">
-                <h3>&#8377 {{ amt_left|floatformat:2 }}</h3>
-                <p>Left budget</p>
-        </div>
-        {% else %}
-        <div class="col-4 text-success">
-            <h3>&#8377 {{ amt_left|floatformat:2 }}</h3>
-            <p>Left budget</p>
-        </div>
-        {%endif%}
-        <div class="col-4">
-            <h3>&#8377 {{ spend|floatformat:2 }}</h3>
-            <p>Spent budget</p>
+{% load static %}
+<script src="{% static 'js/script.js' %}"></script>
+<div class="container">
+    {% for i in category_list %}
+    <div class="cat-list justify-content-between d-flex " onclick="change({{i.pk}})">
+        <span class="ml-0 ml-sm-5" style="font-weight: bold;">{{i}}</span>
+        <div>
+            <a href="{% url 'cat_update' i.pk %}" class="btn btn-primary ">Update</a>
+            <a href="{% url 'cat_delete' i.pk%}" class="btn btn-danger mr-sm-5 mr-0">Delete</a>
         </div>
     </div>
+    {% endfor %}
 </div>
 
-{%if category_info_list%}
-<div id="btn-a" style="text-align: right;">
-    <a href="{% url 'cat_info_add' %}" class="btn btn-primary">+ Add</a>
-</div>
-{% else %}
-<a href="{% url 'cat_info_add' %}" style="color: rgb(129, 129, 129);font-size: larger;">
-    <div id="add-container">
-        <b>+ Add Spending</b>
-    </div>
-</a>
-{% endif %}
-{% for i in category_info_list %}
-<div class="spend-card">
-    <div class="row">
-        <h5 class="col-3">{{i.item}}</h5>
-        <h5 class="col-3">{{i.cat}}</h5>
-        <h5 class="col-3">{{i.date|date:"d D M Y"}}</h5>
-        <h5 class="col-2">&#8377 {{i.spend}}</h5>
-        <a href="{% url 'cat_info_delete' i.pk %}"><span class="col-1 text-danger"><b>X</b></span></a>
-    </div>
-</div>
-{% endfor %}
-
-</div>
 {% endblock content %}
