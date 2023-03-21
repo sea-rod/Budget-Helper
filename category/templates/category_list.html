@@ -2,9 +2,9 @@
 {% block content %}
 {% load static %}
 <script src="{% static 'js/script.js' %}"></script>
-<div class="container">
+<div class="container mt-5 mr-auto ml-0">
     {% for i in category_list %}
-    <div class="cat-list justify-content-between d-flex " onclick="change({{i.pk}})">
+    <div class="cat-list justify-content-between d-flex col-sm-6" onclick="change({{i.pk}})">
         <span class="ml-0 ml-sm-5" style="font-weight: bold;">{{i}}</span>
         <div>
             <a href="{% url 'cat_update' i.pk %}" class="btn btn-primary ">Update</a>

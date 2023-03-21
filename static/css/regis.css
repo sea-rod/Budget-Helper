@@ -136,7 +136,7 @@ li[data-image="menu"] {
     color: rgb(31, 31, 31);
     padding: 10px 30px;
     text-align: center;
-    margin: 0px 20%;
+    margin: 0px 15%;
     border: 1px solid black;
     border-radius: 10px;
     /* margin-top: 200px; */
@@ -145,7 +145,7 @@ li[data-image="menu"] {
 #btn-a {
     margin-top: 100px;
     margin-bottom: 10px;
-    margin-right: 20%;
+    margin-right: 15%;
 }
 
 /*  home page if no list is empty */
@@ -170,8 +170,8 @@ a:hover {
 
 .cat-list {
     background-color: rgb(177, 177, 177);
-    margin: 10px auto;
-    padding: 20px 40px;
+    margin: 10px;
+    padding: 10px 10px;
     color: rgb(24, 24, 24);
     text-align: center;
     border-radius: 20px;
@@ -186,7 +186,7 @@ a:hover {
 }
 
 
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
     .spend-head {
         padding: 10px 30px;
         margin: 10px 10px;

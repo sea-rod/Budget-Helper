@@ -12,21 +12,21 @@
 
     <div class="spend-head">
         <div class="row">
-            <div class="col-4">
+            <div class="col-sm-4">
                 <h3>&#8377 {{ budget|floatformat:2 }}</h3>
                 <p>Total budget</p>
             </div>
-            {% if amt_left < 0 %} <div class="col-4 text-danger">
+            {% if amt_left < 0 %} <div class="col-sm-4 text-danger">
                 <h3>&#8377 {{ amt_left|floatformat:2 }}</h3>
                 <p>Left budget</p>
         </div>
         {% else %}
-        <div class="col-4 text-success">
+        <div class="col-sm-4 text-success">
             <h3>&#8377 {{ amt_left|floatformat:2 }}</h3>
             <p>Left budget</p>
         </div>
         {%endif%}
-        <div class="col-4">
+        <div class="col-sm-4">
             <h3>&#8377 {{ spend|floatformat:2 }}</h3>
             <p>Spent budget</p>
         </div>
@@ -46,12 +46,12 @@
 {% endif %}
 {% for i in category_info_list %}
 <div class="spend-card">
-    <div class="row">
-        <h5 class="col-3">{{i.item}}</h5>
-        <h5 class="col-3">{{i.cat}}</h5>
-        <h5 class="col-3">{{i.date|date:"d D M Y"}}</h5>
-        <h5 class="col-2">&#8377 {{i.spend}}</h5>
-        <a href="{% url 'cat_info_delete' i.pk %}"><span class="col-1 text-danger"><b>X</b></span></a>
+    <div class="row justify-content-between d-flex">
+        <h5 class="col-sm-3 col-6 text-sm-left">{{i.item}}</h5>
+        <h5 class="col-sm-3 col-6 text-sm-left">{{i.cat}}</h5>
+        <h5 class="col-sm-3 col-6 text-sm-left">{{i.date|date:"d D M Y"}}</h5>
+        <h5 class="col-sm-2 col-6 text-sm-left">&#8377 {{i.spend}}</h5>
+        <a href="{% url 'cat_info_delete' i.pk %}" class="col-sm-1 col-12 btn btn-danger">Delete</a>
     </div>
 </div>
 {% endfor %}
