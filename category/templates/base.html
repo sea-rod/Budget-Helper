@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -24,7 +23,7 @@
 
 <body>
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
-        <a href="#" class="navbar-brand"><i class="fa fa-cube"></i>Brand<b>Name</b></a>
+        <a href="{% url 'home' %}" class="navbar-brand"><i class="fa fa-dollar"></i>Budget<b>Helper</b></a>
         {% if user.is_authenticated %}
         <button type="button" class="navbar-toggler col-2" data-toggle="collapse" data-target="#navbarCollapse"
             style="padding: 0;">
@@ -34,21 +33,19 @@
 
             <div class="navbar-nav ml-auto">
                 <a href="{% url 'home' %}" class="nav-item nav-link"><i class="fa fa-home"></i><span>Home</span></a>
-                <a href="#" class="nav-item nav-link"><i class="fa fa-pie-chart"></i><span>Reports</span></a>
-                <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>Message</span></a>
-                <a href="{% url 'cat_info_add' %}" class="nav-item nav-link"><i
-                        class="fa fa-dollar"></i><span>spend</span></a>
-                <div class="nav-item dropdown col-4">
+                <a href="{% url 'cat_list' %}" class="nav-item nav-link"><i
+                        class="fa fa-pie-chart"></i><span>Analytics</span></a>
+                <!-- <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>Message</span></a> -->
+                <div class="nav-item dropdown col-6">
                     <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img
                             sizes="21,12" src="{{ user.profile_pic.url }}" class="avatar" alt="Avatar">
                         {{user.username}} <b class="caret"></b></a>
                     <div class="dropdown-menu" style="left:-20px">
                         <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                        <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
-                        <a href="{% url 'cat_list' %}" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                         <a href="{% url 'cat_add' %}" class="dropdown-item"><i class="fa fa-plus"></i> Add Category</a>
                         <div class="divider dropdown-divider"></div>
-                        <a href="{% url 'logout' %}" class="dropdown-item"><i class="material-icons">&#xE8AC;</i>
+                        <a href="{% url 'logout' %}" class="dropdown-item"><i class=" fa fa-power-off"
+                                style="font-size: large;"></i>
                             Logout</a>
                     </div>
                 </div>

@@ -5,6 +5,7 @@
 {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
+{% if category.category_info_set.all %}
 <div class="row m-0">
     <canvas id="myChart" class="col-6 mt-5" style="background-color: rgb(0, 18, 51); border-radius: 20px;"></canvas>
     <canvas id="pie" class="col-6 mt-5"></canvas>
@@ -123,4 +124,11 @@
     </div>
     {% endfor %}
 </div>
+{% else %}
+<a href="{% url 'cat_info_add' %}" style="color: rgb(129, 129, 129);font-size: larger;">
+    <div id="add-container">
+        <b>+ Add Spending</b>
+    </div>
+</a>
+{% endif %}
 {% endblock content %}
