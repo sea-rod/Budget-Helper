@@ -1,17 +1,69 @@
 {% extends 'base.html' %}
 {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 {% load static %}
 <script src="{% static 'js/script.js' %}"></script>
-<div class="container mt-5 mr-auto ml-0">
-    {% for i in category_list %}
-    <div class="cat-list justify-content-between d-flex col-sm-6" onclick="change({{i.pk}})">
-        <span class="ml-0 ml-sm-5" style="font-weight: bold;">{{i}}</span>
-        <div>
-            <a href="{% url 'cat_update' i.pk %}" class="btn btn-primary ">Update</a>
-            <a href="{% url 'cat_delete' i.pk%}" class="btn btn-danger mr-sm-5 mr-0">Delete</a>
+<div class="row m-0">
+    <div class="container mt-5 mr-auto ml-0 col-6">
+        {% for i in category_list %}
+        <div class="cat-list justify-content-between d-flex " onclick="change({{i.pk}})">
+            <span class="ml-0 ml-sm-5" style="font-weight: bold;">{{i}}</span>
+            <div>
+                <a href="{% url 'cat_update' i.pk %}" class="btn btn-primary ">Update</a>
+                <a href="{% url 'cat_delete' i.pk%}" class="btn btn-danger mr-sm-5 mr-0">Delete</a>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+    <div class="col-6 mr-auto ml-0">
+        <canvas id="pie1" style="width:100%;max-width:700px;"></canvas>
+        <script>
+            var xValues = [];
+            var yValues = [];
+            var barColors = [
+                "#f00", "#f90", "#ff0", "#0f0", "#0ff", "#00f", "#90f", "#f0f",
+                "#f4cccc", "#fce5cd", "#fff2cc", "#d9ead3", "#d0e0e3", "#cfe2f3", "#d9d2e9", "#ead1dc"
+            ];
+
+            var sum = 0;
+
+            // {% for i in category_list  %}
+
+            xValues.push("{{i.name}}")
+            yValues.push({{ i.budget }}-{{ i.amt_left }})
+            sum += {{ i.amt_left }}
+            // {% endfor %}
+            console.log(yValues)
+            xValues.push("Amount Left")
+            yValues.push(sum)
+
+            new Chart("pie1", {
+                type: "pie",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    legend: {
+                        labels: {
+                            fontColor: "white",
+                            fontSize: 14,
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: "Category Analysis",
+                        fontColor: "white",
+                        fontSize: 14,
+                    }
+                }
+            });
+        </script>
+    </div>
+
 </div>
 
 {% endblock content %}
