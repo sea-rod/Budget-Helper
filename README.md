@@ -50,7 +50,7 @@ python manage.py runserver
 
 ## Usage
 ### Adding a new category
-To add a new category, follow these steps:
+#### To add a new category, follow these steps:
 
 1. Log in to your account.
 2. Click on the user profile dropdown menu in the navigation menu.
@@ -58,8 +58,8 @@ To add a new category, follow these steps:
 4. Enter the name and budget of the new category.
 5. Click on the "Confirm" button.
 
-## Editing a category
-### To edit a category, follow these steps:
+### Editing a category
+#### To edit a category, follow these steps:
 
 1. Log in to your account.
 2. Click on the "Analytics" link in the navigation menu.
@@ -67,8 +67,8 @@ To add a new category, follow these steps:
 4. Update the name and budget of the category.
 5. Click on the "Confirm" button.
 
-## Adding an expense
-### To add an expense, follow these steps
+### Adding an expense
+#### To add an expense, follow these steps
 
 1. Log in to your account.
 2. Click on "+ Add Expense" box in the body (if no expense is added)  
