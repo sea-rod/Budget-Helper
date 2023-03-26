@@ -11,6 +11,7 @@ from django.db.models import Sum
 from django.db.models.functions import Coalesce
 from django.shortcuts import render
 from .models import category, category_info
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .form import CatCreateForm, CatInfoForm
 
 
@@ -22,7 +23,7 @@ class CatListView(ListView):
         return category.objects.filter(user=self.request.user)
 
 
-class CatCreateView(CreateView):
+class CatCreateView(LoginRequiredMixin, CreateView):
     model = category
     template_name = "category_add_update.html"
     form_class = CatCreateForm
@@ -38,7 +39,7 @@ class CatCreateView(CreateView):
         return super().form_valid(form)
 
 
-class CatUpdateView(UpdateView):
+class CatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = category
     template_name = "category_add_update.html"
     form_class = CatCreateForm
@@ -55,19 +56,28 @@ class CatUpdateView(UpdateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+    def test_func(self):
+        return self.get_object().user == self.request.user
 
-class CatDeleteView(DeleteView):
+
+class CatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = category
     template_name = "category_delete.html"
     success_url = reverse_lazy("home")
 
+    def test_func(self):
+        return self.get_object().user == self.request.user
 
-class CatViewInfo(DetailView):
+
+class CatViewInfo(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = category
     template_name = "category_detail.html"
 
+    def test_func(self):
+        return self.get_object().user == self.request.user
 
-class CatInfoListView(ListView):
+
+class CatInfoListView(LoginRequiredMixin, ListView):
     template_name = "category_info_list.html"
 
     def get_queryset(self):
@@ -94,7 +104,7 @@ class CatInfoListView(ListView):
 
 
 # to add the spendings
-class CatInfoAddView(CreateView):
+class CatInfoAddView(LoginRequiredMixin, CreateView):
     model = category_info
     form_class = CatInfoForm
     template_name = "category_info_add_update.html"
@@ -121,7 +131,7 @@ class CatInfoAddView(CreateView):
 
 
 # delete view
-class CatInfoDeleteView(DeleteView):
+class CatInfoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = category_info
     template_name = "category_delete.html"
     success_url = reverse_lazy("home")
@@ -132,3 +142,6 @@ class CatInfoDeleteView(DeleteView):
         obj.cat.save()
 
         return super().post(request, *args, **kwargs)
+
+    def test_func(self):
+        return self.get_object().user == self.request.user

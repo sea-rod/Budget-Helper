@@ -3,8 +3,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 {% load static %}
 <script src="{% static 'js/script.js' %}"></script>
-<div class="row m-0">
-    <div class="container mt-5 mr-auto ml-0 col-6">
+<div class="row m-0" id="reverse">
+    <div class="container mt-5 mr-auto ml-0 col-sm-6">
         {% for i in category_list %}
         <div class="cat-list justify-content-between d-flex " onclick="change({{i.pk}})">
             <span class="ml-0 ml-sm-5" style="font-weight: bold;">{{i}}</span>
@@ -15,7 +15,7 @@
         </div>
         {% endfor %}
     </div>
-    <div class="col-6 mr-auto ml-0">
+    <div class="col-sm-6 mr-auto ml-0">
         <canvas id="pie1" style="width:100%;max-width:700px;"></canvas>
         <script>
             var xValues = [];

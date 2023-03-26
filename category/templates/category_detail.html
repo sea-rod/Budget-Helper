@@ -7,8 +7,8 @@
 </script>
 {% if category.category_info_set.all %}
 <div class="row m-0">
-    <canvas id="myChart" class="col-6 mt-5" style="background-color: rgb(0, 18, 51); border-radius: 20px;"></canvas>
-    <canvas id="pie" class="col-6 mt-5"></canvas>
+    <canvas id="myChart" class="col-sm-6 mt-5" style="background-color: rgb(0, 18, 51); border-radius: 20px;"></canvas>
+    <canvas id="pie" class="col-sm-6 mt-5"></canvas>
 </div>
 
 <script>
@@ -116,7 +116,7 @@
 
 <div class="container mt-5 mr-auto ml-0  text-left">
     {% for i in category.category_info_set.all %}
-    <div class="cat-list justify-content-between d-flex ">
+    <div class="cat-list justify-content-between d-flex col-12">
         <span class="ml-0 ml-sm-5" style="font-weight: bold;">{{i.item}}</span>
         <span style="font-weight: bold;">{{i.spend}}</span>
         <span style="font-weight: bold;">{{i.date|date:"d D M"}}</span>
