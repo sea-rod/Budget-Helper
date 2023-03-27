@@ -83,6 +83,16 @@ class CustomSignUpForm(UserCreationForm):
 
 
 class CustomChangeUserForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ("profile_pic", "username", "email")
+        field_classes = {"username": UsernameField}
+        exclude = ["password"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields.pop("password")
+
     username = UsernameField(
         widget=forms.TextInput(
             attrs={
@@ -102,7 +112,7 @@ class CustomChangeUserForm(UserChangeForm):
         ),
     )
     profile_pic = forms.ImageField(
-        label=("Add profile_pic"),
+        label=("Add profile pic"),
         widget=forms.FileInput(
             attrs={
                 "placeholder": "File",
@@ -111,8 +121,3 @@ class CustomChangeUserForm(UserChangeForm):
             }
         ),
     )
-
-    class Meta:
-        model = CustomUser
-        fields = ("profile_pic", "username", "email")
-        field_classes = {"username": UsernameField}

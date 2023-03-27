@@ -1,3 +1,8 @@
+body {
+    background: #1a1a1a;
+    font-family: 'Varela Round', sans-serif;
+}
+
 /** login signup */
 #signup:hover {
     background-color: rgb(161, 161, 161);
