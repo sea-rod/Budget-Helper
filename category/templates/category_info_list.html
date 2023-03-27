@@ -4,7 +4,6 @@
 
 {% block additional %}
 
-<script src="{% static 'js/side-bar.js' %}"></script>
 {% endblock additional %}
 
 {% block content %}
@@ -34,7 +33,7 @@
 </div>
 
 {%if category_info_list%}
-<div id="btn-a" style="text-align: right;">
+<div id="btn-a" style="text-align: right;" class="offset-12">
     <a href="{% url 'cat_info_add' %}" class="btn btn-primary">+ Add</a>
 </div>
 {% else %}
@@ -45,8 +44,8 @@
 </a>
 {% endif %}
 {% for i in category_info_list %}
-<div class="spend-card">
-    <div class="row justify-content-between d-flex">
+<div class="spend-card col-lg-9  col-12">
+    <div class="row justify-content-between d-flex ">
         <h5 class="col-sm-3 col-6 text-sm-left">{{i.item}}</h5>
         <h5 class="col-sm-3 col-6 text-sm-left">{{i.cat}}</h5>
         <h5 class="col-sm-3 col-6 text-sm-left">{{i.date|date:"d D M Y"}}</h5>

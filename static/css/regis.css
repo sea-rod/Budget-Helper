@@ -39,71 +39,6 @@ img {
     color: rgb(148, 148, 224);
 }
 
-/** side-bar */
-.side-bar {
-    padding: 10px;
-    height: 100%;
-    width: 70px;
-    background-color: black;
-    color: rgb(224, 224, 224);
-
-    position: fixed;
-    top: 10;
-    left: 0;
-
-    font-size: larger;
-    overflow: hidden;
-    transition: 0.5s;
-    z-index: 1;
-}
-
-li {
-    list-style-type: none;
-    font-size: larger;
-    margin-left: -30px;
-    display: block;
-    color: rgb(226, 226, 226);
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 32px 32px;
-    overflow: hidden;
-    padding: 12px 10px 12px 60px;
-    transition: 1s;
-}
-
-.side-bar-expand {
-    background-color: black;
-    color: white;
-    padding: 10px;
-    text-align: left;
-    position: fixed;
-    top: 10;
-    left: 0;
-    font-size: larger;
-    overflow: hidden;
-    transition: 0.5s;
-    z-index: 1;
-    width: 200px;
-    height: 100%;
-
-}
-
-.side-bar li {
-    list-style-type: none;
-    display: block;
-    color: rgb(226, 226, 226);
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 32px 32px;
-    overflow: hidden;
-    padding: 12px 10px 12px 60px;
-    transition: 1s;
-}
-
-li[data-image="menu"] {
-    background-image: url("/static/img/menu.png");
-}
-
 
 /*  adding updating container */
 
@@ -135,7 +70,7 @@ li[data-image="menu"] {
     color: rgb(31, 31, 31);
     padding: 10px 30px;
     text-align: center;
-    margin: 0px 15;
+    margin: 0px auto;
     border: 1px solid black;
     border-radius: 10px;
     /* margin-top: 200px; */
@@ -198,7 +133,7 @@ a:hover {
     .spend-card {
         padding: 10px 30px;
         text-align: center;
-        margin: 10px 10px;
+        margin: 10px auto;
     }
 
 

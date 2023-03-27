@@ -15,7 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .form import CatCreateForm, CatInfoForm
 
 
-class CatListView(ListView):
+class CatListView(LoginRequiredMixin, ListView):
     model = category
     template_name = "category_list.html"
 
@@ -77,7 +77,7 @@ class CatViewInfo(LoginRequiredMixin, UserPassesTestMixin, DetailView):
         return self.get_object().user == self.request.user
 
 
-class CatInfoListView(LoginRequiredMixin, ListView):
+class CatInfoListView(ListView):
     template_name = "category_info_list.html"
 
     def get_queryset(self):
