@@ -2,16 +2,16 @@
 
 {% block content %}
 <div class="container">
-    <div class="cat-container" style="color:aliceblue;">
+    <div class="cat-container col-sm-6 col-12" style="color:aliceblue;">
         <form action="" method="post">
             {% csrf_token %}
             <div class="row">
                 {% for fields in form %}
 
-                <div class="col-5" style="margin: 5px auto;">
+                <div class="col-lg-5" style="margin: 5px auto;">
                     {{ fields.label }}
                 </div>
-                <div class="col-7" style="margin: 5px auto;">
+                <div class="col-12 col-lg-7" style="margin: 5px auto;">
                     {{ fields }}
                 </div>
 

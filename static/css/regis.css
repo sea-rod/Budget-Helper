@@ -155,4 +155,9 @@ a:hover {
     #img-div {
         display: none;
     }
+
+    form .row .col-lg-5 {
+        display: none;
+
+    }
 }
