@@ -45,7 +45,7 @@ python manage.py runserver
 
 8. Thats all your good to go. Enjoy the app 💖!!
 
-> Information on how to use the api will be provided soon
+> Change the .env file according to your needs.
 
 
 ## Usage

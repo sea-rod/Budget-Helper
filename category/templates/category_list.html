@@ -16,14 +16,13 @@
         {% endfor %}
     </div>
     <div class="col-sm-6 mr-auto ml-0">
-        <canvas id="pie1" style="width:100%;max-width:700px;"></canvas>
+        <canvas id="pie1" style="width:100%;max-width:700px;" style="border: 0;"></canvas>
         <script>
             var xValues = [];
             var yValues = [];
             var barColors = [
-                "#f00", "#f90", "#ff0", "#0f0", "#0ff", "#00f", "#90f", "#f0f",
-                "#f4cccc", "#fce5cd", "#fff2cc", "#d9ead3", "#d0e0e3", "#cfe2f3", "#d9d2e9", "#ead1dc"
-            ];
+                "#7CB9E8", "#00308F", "#72A0C1", "#002D62", "#6CB4EE", "#002D62", "#007FFF", "#89CFF0",
+                "#0066b2"];
 
             var sum = 0;
 
@@ -43,7 +42,8 @@
                     labels: xValues,
                     datasets: [{
                         backgroundColor: barColors,
-                        data: yValues
+                        data: yValues,
+                        borderWidth: 0,
                     }]
                 },
                 options: {
