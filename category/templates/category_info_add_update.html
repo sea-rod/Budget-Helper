@@ -1,9 +1,6 @@
-{% extends 'base.html' %}
-
-{% block content %}
 <div class="container">
-    <div class="cat-container col-12 col-sm-6" style="color:aliceblue;">
-        <form action="" method="post">
+    <div class="cat-container col-12 col-lg-6 col-sm-10" style="color:aliceblue;">
+        <form action="{% url 'cat_info_add' %}" method="post">
             {% csrf_token %}
             <div class="row">
                 {% for fields in form %}
@@ -35,4 +32,3 @@
         </span>
     </div>
 </div>
-{% endblock content %}

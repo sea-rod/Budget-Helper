@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block additional %}
-
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock additional %}
 
 {% block content %}
@@ -34,17 +34,17 @@
 
 {%if category_info_list%}
 <div id="btn-a" style="text-align: right;" class="offset-12">
-    <a href="{% url 'cat_info_add' %}" class="btn btn-primary">+ Add</a>
+    <a href="#" class="btn btn-primary" onclick="cat_info_add()">+ Add</a>
 </div>
 {% else %}
-<a href="{% url 'cat_info_add' %}" style="color: rgb(129, 129, 129);font-size: larger;">
-    <div id="add-container" class="col-sm-6 col-12">
+<a href=" #" style="color: rgb(129, 129, 129);font-size: larger;">
+    <div id="add-container" class="col-sm-6 col-12" onclick="cat_info_add()">
         <b>+ Add Expense</b>
     </div>
 </a>
 {% endif %}
 {% for i in category_info_list %}
-<div class="spend-card col-lg-9  col-12">
+<div class=" spend-card col-lg-9 col-12">
     <div class="row justify-content-between d-flex ">
         <h5 class="col-sm-3 col-6 text-sm-left">{{i.item}}</h5>
         <h5 class="col-sm-3 col-6 text-sm-left">{{i.cat}}</h5>
