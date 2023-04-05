@@ -43,7 +43,8 @@
                     <div class="dropdown-menu" style="left:-20px">
                         <a href="{% url 'edit_profile' user.pk %}" class="dropdown-item"><i class="fa fa-user-o"></i>
                             Profile</a>
-                        <a href="{% url 'cat_add' %}" class="dropdown-item"><i class="fa fa-plus"></i> Add Category</a>
+                        <a href="#" class="dropdown-item" onclick="cat_add()"><i class="fa fa-plus"></i> Add
+                            Category</a>
                         <div class="divider dropdown-divider"></div>
                         <a href="{% url 'logout' %}" class="dropdown-item"><i class=" fa fa-power-off"
                                 style="font-size: large;"></i>
