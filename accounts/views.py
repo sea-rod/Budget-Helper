@@ -1,9 +1,11 @@
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from .models import CustomUser
-from category.models import category
+
 from .forms import CustomUserLoginForm, CustomSignUpForm, CustomChangeUserForm
+from .models import CustomUser
+
+from category.models import category
 
 
 class SignupView(CreateView):

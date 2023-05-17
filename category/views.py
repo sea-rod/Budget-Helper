@@ -10,9 +10,9 @@ from django.views.generic import (
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
 from django.shortcuts import render
-from .models import category, category_info
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .form import CatCreateForm, CatInfoForm
+from .models import category, category_info
 
 
 class CatListView(LoginRequiredMixin, ListView):

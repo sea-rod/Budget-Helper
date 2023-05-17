@@ -1,13 +1,14 @@
 from django.contrib.auth import password_validation
-from .models import CustomUser
+from django.utils.translation import gettext_lazy as _
+from django import forms
 from django.contrib.auth.forms import (
     AuthenticationForm,
     UsernameField,
     UserCreationForm,
     UserChangeForm,
 )
-from django.utils.translation import gettext_lazy as _
-from django import forms
+
+from .models import CustomUser
 
 
 class CustomUserLoginForm(AuthenticationForm):
