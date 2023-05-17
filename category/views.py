@@ -11,6 +11,7 @@ from django.db.models import Sum
 from django.db.models.functions import Coalesce
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
 from .form import CatCreateForm, CatInfoForm
 from .models import category, category_info
 
