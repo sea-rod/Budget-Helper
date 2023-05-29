@@ -16,15 +16,6 @@ class SignupView(CreateView):
     def form_valid(self, form):
         user = form.save()
 
-        categories = [
-            category(user=user, name="Bills", budget=5000, amt_left=5000),
-            category(user=user, name="Housing", budget=5000, amt_left=5000),
-            category(user=user, name="Transportation", budget=5000, amt_left=5000),
-            category(user=user, name="Groceries", budget=5000, amt_left=5000),
-            category(user=user, name="Entertainment", budget=5000, amt_left=5000),
-        ]
-        category.objects.bulk_create(categories)
-
         return super().form_valid(form)
 
 

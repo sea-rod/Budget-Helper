@@ -117,10 +117,6 @@ class CatInfoAddView(LoginRequiredMixin, CreateView):
             form.add_error("spend", " spend Value must be greater than zero")
             return self.form_invalid(form)
 
-        obj = category.objects.get(name=cat, user=self.request.user)
-        obj.amt_left -= spend
-        obj.save()
-
         form.instance.item = form.instance.item.title()
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -136,13 +132,6 @@ class CatInfoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = category_info
     template_name = "category_delete.html"
     success_url = reverse_lazy("home")
-
-    def post(self, request, *args, **kwargs):
-        obj = self.get_object()
-        obj.cat.amt_left += obj.spend
-        obj.cat.save()
-
-        return super().post(request, *args, **kwargs)
 
     def test_func(self):
         return self.get_object().user == self.request.user
