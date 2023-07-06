@@ -26,7 +26,7 @@ class CatListView(LoginRequiredMixin, ListView):
 
 class CatCreateView(LoginRequiredMixin, CreateView):
     model = category
-    template_name = "category_add_update.html"
+    template_name = "category_add.html"
     form_class = CatCreateForm
 
     def form_valid(self, form):
@@ -42,7 +42,7 @@ class CatCreateView(LoginRequiredMixin, CreateView):
 
 class CatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = category
-    template_name = "category_add_update.html"
+    template_name = "category_update.html"
     form_class = CatCreateForm
 
     def form_valid(self, form):

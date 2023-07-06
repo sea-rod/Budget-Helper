@@ -1,6 +1,6 @@
 <div class="container">
     <div class="cat-container col-sm-6 col-12" style="color:aliceblue;">
-        <form action="" method="post">
+        <form action="{% url 'cat_add' %}" method="post">
             {% csrf_token %}
             <div class="row">
                 {% for fields in form %}

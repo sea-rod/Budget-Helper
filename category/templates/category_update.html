@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Updating Category - Budget Helper App
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <div class="cat-container col-sm-6 col-12" style="color:aliceblue;">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                {% for fields in form %}
+
+                <div class="col-lg-5" style="margin: 5px auto;">
+                    {{ fields.label }}
+                </div>
+                <div class="col-12 col-lg-7" style="margin: 5px auto;">
+                    {{ fields }}
+                </div>
+
+                {% endfor %}
+                <input type="submit" class="ml-3 btn btn-primary" value="confirm">
+            </div>
+        </form>
+        <span style="color: rgb(206, 45, 45);">
+            {% for field in form %}
+            {% for error in field.errors %}
+            <div class="alert alert-danger" style="margin-top: 50px;">
+                <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %}
+        </span>
+    </div>
+</div>
+{% endblock content %}

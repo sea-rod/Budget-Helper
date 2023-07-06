@@ -2,9 +2,20 @@
 
 {% load static %}
 
+{% block title %}
+Spending History - Budget Helper App
+{% endblock title %}
+
+{% block meta %}
+<meta name="description"
+    content="Track and manage your spending history with Budget Helper App. View your total budget, left budget, and spent budget. Add and delete expenses by category.">
+{% endblock meta %}
+
+
 {% block additional %}
 <script src="{% static 'js/script.js' %}"></script>
 {% endblock additional %}
+
 
 {% block content %}
 <div>

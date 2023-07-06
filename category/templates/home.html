@@ -1,64 +1,38 @@
 {% extends 'base.html' %}
 
 {% load static %}
+
+{% block title %}
+About page - Budget Helper App
+{% endblock title %}
+
+{% block meta %}
+<meta name="description"
+    content="Learn more about Budget Helper App - a budget application based on categorical budgeting. Take control of your finances and manage your budget effectively.">
+{% endblock meta %}
+
 {% block content %}
 <div class="row" style="margin: 0px;">
     <div class="col-lg-6 text-white">
         <h1>Introduction</h1>
         <p>
             The Budget Helper App is a web-based application designed to help users manage their finances effectively.
-            With this
-            application, users can easily track their income and expenses, set budgets for different categories, and get
-            insights
-            into their spending habits. We offer a range of default categories for common
-            expenses like
-            housing,
-            transportation, and groceries to help users get started quickly as well as one can also custom categories
-            according to their needs.
-            </br>
-            <b>So for what are you waiting for? signup now and track expenses.</b>
+            With this application, users can easily track their income and expenses, set budgets for different
+            categories, and gain insights into their spending habits. We offer a range of default categories for common
+            expenses like housing, transportation, and groceries to help users get started quickly. Additionally, users
+            can create custom categories according to their needs.
+            <br>
+            <b>Sign up now and take control of your expenses with Budget Helper App.</b>
         </p>
         <h3 class="mt-5">Our Mission</h3>
         <p>
-            At the Budget Helper App, we believe that everyone should have access to the tools they need to manage their
-            finances
-            effectively. Our mission is to provide a user-friendly and feature-rich budgeting application that helps our
-            users take
-            control of their finances and make informed decisions about their money.
-
+            At Budget Helper App, our mission is to provide a user-friendly and feature-rich budgeting application that
+            empowers users to effectively manage their finances. We believe that everyone should have access to the
+            tools they need to make informed decisions about their money and take control of their financial well-being.
         </p>
-        <!-- <h3>
-            Features
-        </h3>
-        <p>
-            The Django Budget App offers a wide range of features that make budgeting easy and effective. Some of our
-            key features
-            include:
-        <ul>
-            <li><b> User authentication and authorization:</b> Our application is designed to be secure and protect our
-                users'
-                sensitive
-                financial information.</li>
-            <li><b>Add and edit custom categories:</b> Users can create their own custom categories to track
-                their expenses
-                more accurately.</li>
-            <li><b>Default categories for common expenses:</b> We offer a range of default categories for common
-                expenses like
-                housing,
-                transportation, and groceries to help users get started quickly.</li>
-            <li><b>Add and edit expenses for each category:</b> Users can easily add new expenses for each category.
-            </li>
-            <li><b>View and analyze expenses by category:</b> Our application provides a clear and easy-to-use interface
-                that
-                allows users to
-                view and analyze their expenses by category.</li>
-        </ul>
-        </p> -->
     </div>
     <div class="col-lg-6">
-        <img src="{% static 'img/home.jpg' %}" alt="Image Here">
+        <img src="{% static 'img/home.jpg' %}" alt="Budget Helper App Image">
     </div>
 </div>
-{% load static %}
-
-{% endblock %}
+{% endblock content %}
