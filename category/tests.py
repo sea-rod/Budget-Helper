@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from django.contrib.auth import authenticate, login
 from .models import category, category_info
+from .form import CatCreateForm
 
 
 class CatergoryTest(TestCase):
@@ -28,6 +28,18 @@ class CatergoryTest(TestCase):
             self.assertTemplateUsed(response, "category_list.html")
             for category in expected_categories:
                 self.assertContains(response, category)
+
+    def test_negative_budget(self):
+        flag = self.client.login(username="testuser", password="test123")
+
+        if flag:
+            category_test = category.objects.filter(user=self.user).first()
+            category_test.budget = -1000
+            form = CatCreateForm(
+                instance=category_test,
+                data={"budget": category_test.budget, "name": category_test.name},
+            )
+            self.assertFalse(form.is_valid())
 
     def test_category_management(self):
         flag = self.client.login(username="testuser", password="test123")

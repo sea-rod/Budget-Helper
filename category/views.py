@@ -6,14 +6,12 @@ from django.views.generic import (
     UpdateView,
     DetailView,
 )
-
-from django.db.models import Sum
-from django.db.models.functions import Coalesce
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .form import CatCreateForm, CatInfoForm
 from .models import category, category_info
+from .services import amt_remaining, get_budget_summary
 
 
 class CatListView(LoginRequiredMixin, ListView):
@@ -31,10 +29,6 @@ class CatCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         budget = form.cleaned_data["budget"]
-        if budget <= 0:
-            form.add_error("budget", " budget Value must be greater than zero")
-            return self.form_invalid(form)
-
         form.instance.amt_left = budget
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -47,14 +41,9 @@ class CatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         budget = form.cleaned_data["budget"]
-        if budget <= 0:
-            form.add_error("budget", " budget Value must be greater than zero")
-            return self.form_invalid(form)
-        spend = category_info.objects.filter(user=self.request.user).aggregate(
-            spend=Coalesce(Sum("spend"), 0.0)
-        )["spend"]
-        form.instance.amt_left = budget - spend
+        form.instance.amt_left = amt_remaining(form.instance.user, budget)
         form.instance.user = self.request.user
+        form.instance.budget = budget
         return super().form_valid(form)
 
     def test_func(self):
@@ -85,18 +74,9 @@ class CatInfoListView(ListView):
         return category_info.objects.filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):
-        total = category.objects.filter(user=self.request.user).aggregate(
-            budget=Coalesce(
-                Sum("budget"),
-                0.0,
-            ),
-            amt_left=Coalesce(Sum("amt_left"), 0.00),
-        )
-        spend = category_info.objects.filter(user=self.request.user).aggregate(
-            spend=Coalesce(Sum("spend"), 0.0)
-        )
+        budget_summary = get_budget_summary(user=self.request.user)
 
-        return super().get_context_data(**kwargs) | total | spend
+        return super().get_context_data(**kwargs) | budget_summary
 
     def get(self, request, *args, **kwargs):
         print(request.user.is_authenticated)
@@ -112,12 +92,6 @@ class CatInfoAddView(LoginRequiredMixin, CreateView):
     template_name = "category_info_add_update.html"
 
     def form_valid(self, form):
-        spend = form.cleaned_data["spend"]
-        cat = form.cleaned_data["cat"]
-        if spend <= 0:
-            form.add_error("spend", " spend Value must be greater than zero")
-            return self.form_invalid(form)
-
         form.instance.item = form.instance.item.title()
         form.instance.user = self.request.user
         return super().form_valid(form)

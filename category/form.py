@@ -27,6 +27,15 @@ class CatCreateForm(forms.ModelForm):
         model = category
         fields = ("name", "budget")
 
+    def clean(self):
+        cleaned_data = super().clean()
+
+        budget = cleaned_data.get("budget")
+        if budget and budget <= 0:
+            self.add_error("budget", "Budget value must be greater than zero.")
+
+        return cleaned_data
+
 
 class CatInfoForm(forms.ModelForm):
     user = None
@@ -67,3 +76,12 @@ class CatInfoForm(forms.ModelForm):
         del kwargs["user"]
         super(CatInfoForm, self).__init__(*args, **kwargs)
         self.fields["cat"].queryset = category.objects.filter(user=user)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        spend = cleaned_data.get("spend")
+
+        if spend <= 0:
+            self.add_error("spend", " spent Value must be greater than zero")
+
+        return cleaned_data
