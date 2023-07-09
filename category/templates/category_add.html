@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <div class="container">
     <div class="cat-container col-sm-6 col-12" style="color:aliceblue;">
         <form action="{% url 'cat_add' %}" method="post">
@@ -32,3 +35,4 @@
         </span>
     </div>
 </div>
+{% endblock content %}

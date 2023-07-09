@@ -99,6 +99,7 @@ class CatInfoListView(ListView):
         return super().get_context_data(**kwargs) | total | spend
 
     def get(self, request, *args, **kwargs):
+        print(request.user.is_authenticated)
         if request.user.is_authenticated:
             return super().get(request, *args, **kwargs)
         return render(request, "home.html")
