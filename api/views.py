@@ -1,7 +1,13 @@
 from rest_framework import generics, permissions
 from category.models import category, category_info
+from category.services import get_budget_summary
+from rest_framework.response import Response
 from .permissions import UserOnly
-from .serializer import CategorySerializer, CategoryInfoSerializer
+from .serializer import (
+    CategorySerializer,
+    CategoryInfoSerializer,
+    BudgetSummarySerializer,
+)
 
 
 class APIListCreateCategory(generics.ListCreateAPIView):
@@ -43,3 +49,15 @@ class APIDestoryCategoryInfo(generics.DestroyAPIView):
 
     def get_queryset(self):
         return category.objects.filter(user=self.request.user)
+
+
+class BudgetSummary(generics.GenericAPIView):
+    serializer_class = BudgetSummarySerializer
+    permission_classes = (permissions.IsAuthenticated, UserOnly)
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        budget_summary = get_budget_summary(user)
+        serializer_data = self.get_serializer(budget_summary)
+
+        return Response(serializer_data.data)

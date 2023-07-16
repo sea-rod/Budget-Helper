@@ -12,3 +12,9 @@ class CategoryInfoSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ("id", "spend", "cat", "item", "date")
         model = category_info
+
+
+class BudgetSummarySerializer(serializers.Serializer):
+    budget = serializers.FloatField()
+    amt_left = serializers.FloatField()
+    spend = serializers.FloatField()

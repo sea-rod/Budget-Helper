@@ -4,6 +4,7 @@ from .views import (
     APIUpdateDeleteRetriveCategory,
     APIListCategoryInfo,
     APIDestoryCategoryInfo,
+    BudgetSummary,
 )
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path("<int:pk>/category/", APIUpdateDeleteRetriveCategory.as_view()),
     path("<int:pk>/delete_catinfo/", APIDestoryCategoryInfo.as_view()),
     path("list_category/", APIListCategoryInfo.as_view()),
+    path("get_summary/", BudgetSummary.as_view()),
 ]
