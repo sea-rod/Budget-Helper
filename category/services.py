@@ -15,7 +15,7 @@ def amt_remaining(user: Model, budget: int) -> int:
     Returns:
         int: The remaining amount after deducting the spend from the budget.
     """
-    spend = category_info.objects.filter(user=user).aaggregate(
+    spend = category_info.objects.filter(user=user).aggregate(
         spend=Coalesce(Sum("spend"), 0.0)
     )["spend"]
     return budget - spend
