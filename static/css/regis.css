@@ -63,26 +63,6 @@ img {
 
 /* spend list on home page */
 
-.spend-head {
-    background-color: rgb(226, 226, 226);
-    color: rgb(31, 31, 31);
-    text-align: center;
-    padding: 10px 30px;
-    margin: 10px;
-    border-radius: 10px;
-}
-
-
-.spend-card {
-    padding: 10px 30px;
-    text-align: center;
-    margin: 10px auto;
-    background-color: rgb(226, 226, 226);
-    color: rgb(31, 31, 31);
-    border: 1px solid black;
-    border-radius: 10px;
-    /* margin-top: 200px; */
-}
 
 #btn-a {
     margin-right: 10px;

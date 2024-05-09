@@ -22,7 +22,7 @@
                     <h2 class="text-center">Welcome Back</h2>
                     <form action="" method="post">
                         <div class="form-container">
-                            {%csrf_token%}
+                            {% csrf_token %}
                             {% for field in form %}
                             <div class="row">
                                 <div class="col-sm-12">

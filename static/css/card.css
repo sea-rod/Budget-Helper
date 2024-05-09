@@ -1,0 +1,47 @@
+.main{
+    background-color: #242424;
+    border-radius: 20px;
+    width: 90vw;
+}
+
+.bcard{
+    background-color: #303030;
+    color: rgb(231, 231, 231);
+    border-radius: 20px;
+    /* font-weight: bold;   */
+    font-family:"Jockey One",monospace;
+        box-shadow: #00000080 -1px 1px 20px 13px;
+}
+.bcard p.amt {
+    font-size: 18px;
+    color: #F0F0F0;
+    word-break: break-all;
+}
+
+.bcard p.amt-label {
+    font-size: 13px;
+    color: #C8C8C8;
+}
+.profit{
+    color: #04D900;
+}
+
+.btn-delete{
+    background-color: #D01E1E;
+    color: rgb(247, 247, 247);
+    border-radius: 10px;
+    padding: 5px 20px;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 480px) {
+
+    .bcard p.amt {
+            font-size: 20px;
+        }
+    
+        .bcard p.amt-label {
+            font-size: 15px;         
+        }
+    
+}

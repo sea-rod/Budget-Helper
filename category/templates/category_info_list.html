@@ -1,70 +1,62 @@
 {% extends 'base.html' %}
-
 {% load static %}
-
 {% block title %}
-Spending History - Budget Helper App
+    Spending History - Budget Helper App
 {% endblock title %}
-
 {% block meta %}
-<meta name="description"
-    content="Track and manage your spending history with Budget Helper App. View your total budget, left budget, and spent budget. Add and delete expenses by category.">
+    <meta name="description"
+          content="Track and manage your spending history with Budget Helper App. View your total budget, left budget, and spent budget. Add and delete expenses by category.">
 {% endblock meta %}
-
-
 {% block additional %}
-<script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/card.css' %}">
 {% endblock additional %}
-
-
 {% block content %}
-<div>
-
-    <div class="spend-head">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3>&#8377 {{ budget|floatformat:2 }}</h3>
-                <p>Total budget</p>
+    <div class="container main mt-5 py-5 px-md-5 px-3">
+        <div class="bcard d-flex justify-content-around py-4 flex-wrap">
+            <div class="d-flex flex-column">
+                <p class="amt my-auto">&#8377 {{ budget|floatformat:3 }}</p>
+                <p class="mx-auto amt-label my-auto">Total budget</p>
             </div>
-            {% if amt_left < 0 %} <div class="col-sm-4 text-danger">
-                <h3>&#8377 {{ amt_left|floatformat:2 }}</h3>
-                <p>Left budget</p>
+            {% if amt_left < 0 %}
+                <div class="d-flex flex-column text-danger">
+                    <p class="amt my-auto">
+                        <span class="loss">&#8377 {{ amt_left|floatformat:2 }}</span>
+                    </p>
+                    <p class="mx-auto amt-label loss my-auto">Left budget</p>
+                </div>
+            {% else %}
+                <div class="d-flex flex-column">
+                    <p class="amt my-auto">
+                        <span class="profit">&#8377 {{ amt_left|floatformat:3 }}</span>
+                    </p>
+                    <p class="mx-auto amt-label profit my-auto">
+                        <span class="profit">Left budget</span>
+                    </p>
+                </div>
+            {% endif %}
+            <div class="d-flex flex-column ">
+                <p class="amt my-auto">&#8377 {{ spend|floatformat:3 }}</p>
+                <p class="mx-auto amt-label my-auto">Spent budget</p>
+            </div>
         </div>
-        {% else %}
-        <div class="col-sm-4 text-success">
-            <h3>&#8377 {{ amt_left|floatformat:2 }}</h3>
-            <p>Left budget</p>
-        </div>
-        {%endif%}
-        <div class="col-sm-4">
-            <h3>&#8377 {{ spend|floatformat:2 }}</h3>
-            <p>Spent budget</p>
-        </div>
+        {% if not category_info_list %}
+            <a href="#">
+                <div id="add-container" class="col-sm-6 col-12" onclick="cat_info_add()">
+                    <b>+ Add Expense</b>
+                </div>
+            </a>
+        {% endif %}
+        {% for i in category_info_list %}
+            <div class="bcard justify-content-around d-flex py-2 mt-5">
+                <p class="col-3 text-center mx-auto my-auto">{{ i.item }}</p>
+                <p class="col-3 text-center mx-auto my-auto">{{ i.date|date:"d D M Y" }}</p>
+                <p class="col-3 text-center mx-auto my-auto">&#8377 {{ i.spend }}</p>
+                <div class="col-3 d-flex">
+                    <a href="{% url 'cat_info_delete' i.pk %}"
+                       class="mx-auto my-auto btn-delete">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-</div>
-
-{%if category_info_list%}
-<div id="btn-a" style="text-align: right;" class="offset-12">
-    <a href="#" class="btn btn-primary" onclick="cat_info_add()">+ Add</a>
-</div>
-{% else %}
-<a href="#" style="color: rgb(129, 129, 129);font-size: larger;">
-    <div id="add-container" class="col-sm-6 col-12" onclick="cat_info_add()">
-        <b>+ Add Expense</b>
-    </div>
-</a>
-{% endif %}
-{% for i in category_info_list %}
-<div class=" spend-card col-lg-9 col-12">
-    <div class="row justify-content-between d-flex ">
-        <h5 class="col-sm-3 col-6 text-sm-left">{{i.item}}</h5>
-        <h5 class="col-sm-3 col-6 text-sm-left">{{i.cat}}</h5>
-        <h5 class="col-sm-3 col-6 text-sm-left">{{i.date|date:"d D M Y"}}</h5>
-        <h5 class="col-sm-2 col-6 text-sm-left">&#8377 {{i.spend}}</h5>
-        <a href="{% url 'cat_info_delete' i.pk %}" class="col-sm-1 col-12 btn btn-danger">Delete</a>
-    </div>
-</div>
-{% endfor %}
-
-</div>
 {% endblock content %}

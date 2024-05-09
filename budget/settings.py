@@ -156,7 +156,7 @@ LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
 
-CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
 
 REST_FRAMEWORK = {
@@ -205,3 +205,4 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
+

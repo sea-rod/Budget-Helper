@@ -1,6 +1,7 @@
-body {
-    background: #1a1a1a;
-    font-family: 'Varela Round', sans-serif;
+html,body {
+    max-width: 100%;
+    background-color: #020402;
+    overflow-x:hidden;
 }
 
 .navbar {
@@ -132,7 +133,6 @@ body {
 } */
 
 .navbar .navbar-nav .user-action {
-    padding: 9px 15px;
     font-size: 15px;
 }
 
@@ -166,15 +166,34 @@ body {
     background-color: #1a1a1a !important;
 }
 
+#hero{
+    background-image: url("../img/hero_bg.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#hero div{
+    background-color: #93c7ea75;    
+    border-radius: 20px;
+}
 #about .row {
-    text-align: justify;
+    color: #1a1a1a;
+    text-align: center;
     justify-content: space-between;
     margin: 10px 10px 100px 0;
     /* background-color: #399ee2; */
 }
 
+#about h1 {
+    font-size: 4vmax;
+}
+
+#about p {
+    color: #474747;
+}
+
 #about img {
-    height: 350px;
+    height: 90%;
     width: 100%;
 }
 
@@ -209,11 +228,8 @@ body {
 
 /* new */
 .navbar .navbar-nav>a>i {
-    display: inline-block;
     text-align: left;
     min-width: 30px;
-    position: relative;
-    top: 4px;
 }
 
 .navbar .navbar-collapse {
@@ -235,6 +251,75 @@ body {
 }
 
 
+.brand-name{
+    background-color: #1a1a1a;
+    color: white;
+    padding: 10px 20px;
+    font-size: 30px;
+}
+
+.brand-name p{
+    margin-bottom: 0;
+}
+
+.brand-name p span:first-child{
+    background-color: #ececec;
+    color: #1b1b1b;
+    padding: 10px 20px;
+    margin-right:0 ;
+}
+.brand-name p span:nth-child(2){
+    font-weight: bold;
+}
+
+#sidebar {
+    /* top: 0; */
+    position: fixed;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+    left: 0;
+    z-index: 2;
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+#sidebar .nav-text{
+    font-size: 14px;
+}
+#sidebar i{
+    font-size: 25px;
+}
+#sidebar i.nav-add{
+    font-size: 40px;
+    padding: 4px 6px;
+    border-radius: 50px;
+    /* border: solid rgb(240, 43, 43) 1px; */
+    box-shadow:rgb(8 8 8) 0px 30px 60px -12px inset,
+        rgb(131 129 129) 20px 6px 36px 18px inset}
+#sidebar li{
+    text-decoration: none;
+    list-style-type: none;
+}
+@media screen and (min-width: 480px) {
+    #sidebar {
+            border-radius: 20px;
+            top: 10%;
+            height: 80%;
+            width: 80px;
+            left: 35px;
+            
+        }
+}
+
+@media (min-width:992px) {
+    #about .row {
+        text-align: left;
+    }
+
+    #about h1 {
+        line-height: 80px;
+    }
+}
 
 @media (min-width: 1199px) {
     #img-div {
