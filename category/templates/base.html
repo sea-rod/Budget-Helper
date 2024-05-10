@@ -21,7 +21,6 @@
         <link rel="stylesheet" href="{% static 'css/regis.css' %}">
         <link rel="stylesheet" href="{% static 'css/home.css' %}">
         {% block additional %}
-            k
         {% endblock additional %}
         {% block meta %}
         {% endblock meta %}
@@ -37,28 +36,28 @@
                 <span><i class="fa fa-dollar"></i>Budget</span><span>Helper</span>
             </p>
         </div> -->
-        <div id="content" >
+        <div id="content">
             <div class="pt-1" id="sidebar">
                 <div class="d-flex justify-content-between my-1 px-3 mx-2">
-                    <a href="/" class="text-white d-flex flex-column ">
+                    <a href="/" class=" d-flex flex-column ">
                         <i class="fa fa-home mx-auto"></i>
-                        <p class="text-white mt-auto my-0 nav-text">Home</p>
+                        <p class="mt-auto my-0 nav-text">Home</p>
                     </a>
-                    <a href="{% url 'cat_list' %}" class="text-white d-flex flex-column ">
+                    <a href="{% url 'cat_list' %}" class="active d-flex flex-column ">
                         <i class="fa fa-pie-chart mx-auto"></i>
-                        <p class="text-white mt-auto my-0 nav-text">Analytics</p>
+                        <p class="mt-auto my-0 nav-text">Analytics</p>
                     </a>
-                    <a href="#" class="text-white d-flex flex-column m-0 p-0">
+                    <a href="{% url 'cat_info_add' %}" class=" d-flex flex-column m-0 p-0">
                         <i class="fa fa-plus mx-auto my-auto nav-add"></i>
                         <!-- <p class="text-white mx-auto my-0 nav-text">Home</p> -->
                     </a>
-                    <a href="#" class="text-white d-flex flex-column ">
+                    <a href="#" class=" d-flex flex-column ">
                         <i class="fa fa-gear mx-auto"></i>
-                        <p class="text-white mt-auto my-0 nav-text">Settings</p>
+                        <p class="mt-auto my-0 nav-text">Settings</p>
                     </a>
-                    <a href="#" class="text-white d-flex flex-column ">
+                    <a href="{% url 'edit_profile' user.id %}" class=" d-flex flex-column ">
                         <i class="fa fa-user mx-auto"></i>
-                        <p class="text-white mt-auto my-0 nav-text mx-auto">{{user.username}}</p>
+                        <p class="mt-auto my-0 nav-text mx-auto">{{ user.username }}</p>
                     </a>
                 </div>
             </div>
@@ -99,4 +98,6 @@
             </div>
         </footer>
     </body>
+    <script src="{% static 'js/sidebar.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </html>

@@ -8,6 +8,7 @@ class category(models.Model):
     name = models.CharField(max_length=255)
     budget = models.FloatField(default=0)
     amt_left = models.FloatField(default=0)
+    img = models.CharField(max_length=70)
 
     def __str__(self) -> str:
         return self.name

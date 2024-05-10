@@ -296,10 +296,16 @@ html,body {
     /* border: solid rgb(240, 43, 43) 1px; */
     box-shadow:rgb(8 8 8) 0px 30px 60px -12px inset,
         rgb(131 129 129) 20px 6px 36px 18px inset}
-#sidebar li{
+#sidebar li,a{
     text-decoration: none;
     list-style-type: none;
+    color: #e8e8e8;
 }
+
+.active{
+    color: #04D900;
+}
+
 @media screen and (min-width: 480px) {
     #sidebar {
             border-radius: 20px;

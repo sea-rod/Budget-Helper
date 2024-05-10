@@ -8,11 +8,12 @@
           content="Track and manage your spending history with Budget Helper App. View your total budget, left budget, and spent budget. Add and delete expenses by category.">
 {% endblock meta %}
 {% block additional %}
-    <script src="{% static 'js/script.js' %}"></script>
+
+   <!-- <script src="{% static 'js/script.js' %}"></script> -->
     <link rel="stylesheet" href="{% static 'css/card.css' %}">
 {% endblock additional %}
 {% block content %}
-    <div class="container main mt-5 py-5 px-md-5 px-3">
+    <div class="container main mt-5 py-5 px-md-5 px-0">
         <div class="bcard d-flex justify-content-around py-4 flex-wrap">
             <div class="d-flex flex-column">
                 <p class="amt my-auto">&#8377 {{ budget|floatformat:3 }}</p>
@@ -48,13 +49,13 @@
             </a>
         {% endif %}
         {% for i in category_info_list %}
-            <div class="bcard justify-content-around d-flex py-2 mt-5">
+            <div class="bcard justify-content-around d-flex flex-wrap py-2 mt-5">
                 <p class="col-3 text-center mx-auto my-auto">{{ i.item }}</p>
                 <p class="col-3 text-center mx-auto my-auto">{{ i.date|date:"d D M Y" }}</p>
                 <p class="col-3 text-center mx-auto my-auto">&#8377 {{ i.spend }}</p>
-                <div class="col-3 d-flex">
+                <div class="col-12 d-flex">
                     <a href="{% url 'cat_info_delete' i.pk %}"
-                       class="mx-auto my-auto btn-delete">Delete</a>
+                       class="col-12 text-center my-auto btn-delete">Delete</a>
                 </div>
             </div>
         {% endfor %}

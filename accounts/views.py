@@ -1,5 +1,6 @@
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 
 from .forms import CustomUserLoginForm, CustomSignUpForm, CustomChangeUserForm
@@ -24,8 +25,11 @@ class CLoginView(LoginView):
     form_class = CustomUserLoginForm
 
 
-class ChangeUserView(UpdateView):
+class ChangeUserView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = CustomChangeUserForm
     template_name = "registration/changeuser.html"
     model = CustomUser
     success_url = reverse_lazy("home")
+
+    def test_func(self):
+        return self.get_object() == self.request.user

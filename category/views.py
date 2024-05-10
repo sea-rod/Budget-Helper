@@ -21,6 +21,11 @@ class CatListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return category.objects.filter(user=self.request.user)
 
+    def get_context_data(self, **kwargs):
+        budget_summary = get_budget_summary(user=self.request.user)
+
+        return super().get_context_data(**kwargs) | budget_summary
+
 
 class CatCreateView(LoginRequiredMixin, CreateView):
     model = category

@@ -1,7 +1,7 @@
 .main{
     background-color: #242424;
     border-radius: 20px;
-    width: 90vw;
+    width: 95vw;
 }
 
 .bcard{
@@ -10,7 +10,7 @@
     border-radius: 20px;
     /* font-weight: bold;   */
     font-family:"Jockey One",monospace;
-        box-shadow: #00000080 -1px 1px 20px 13px;
+    box-shadow: #00000080 -1px 1px 20px 13px;
 }
 .bcard p.amt {
     font-size: 18px;
@@ -32,6 +32,54 @@
     border-radius: 10px;
     padding: 5px 20px;
     font-weight: bold;
+}
+
+.bcard .col-3{
+    font-size: 15px;
+}
+
+/* category_list css  */
+
+#cat-list {
+    font-size: 20px;
+}
+
+#cat-list div:nth-child(1){
+    z-index: 10;
+    width: 100%;
+    border-right:1px solid #F0F0F0; ;
+
+}
+
+.cat-list-card{
+    background-color: #303030;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: #F0F0F0;
+    box-shadow: #00000080 -1px 1px 20px 13px;
+}
+
+
+.cat-list-card i{
+    font-size: 25px;
+}
+
+.cat-name{
+    font-size: 20px;
+}
+
+progress{
+    background-color: #00000080;
+    block-size: 5px;
+    border-radius: 10px;
+    appearance: none;
+}
+progress::-webkit-progress-bar {
+    background-color: rgb(232, 232, 232);
+}
+
+progress::-webkit-progress-value {
+    background-color: rgb(33, 195, 41);
 }
 
 @media screen and (min-width: 480px) {

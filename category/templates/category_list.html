@@ -6,24 +6,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     {% load static %}
     <script src="{% static 'js/script.js' %}"></script>
-    <div></div>
-    <div class="row m-0" id="reverse">
-        <div class="container mt-5 mr-auto ml-0 col-sm-6">
-            {% for i in category_list %}
-                <div class="cat-list justify-content-between d-flex "
-                     onclick="change({{ i.pk }})">
-                    <span class="ml-0 ml-sm-5" style="font-weight: bold;">{{ i }}</span>
-                    <div>
-                        <a href="{% url 'cat_update' i.pk %}" class="btn btn-primary ">Update</a>
-                        <a href="{% url 'cat_delete' i.pk %}"
-                           class="btn btn-danger mr-sm-5 mr-0">Delete</a>
-                    </div>
-                </div>
-            {% endfor %}
+    <link rel="stylesheet" href="{% static 'css/card.css' %}">
+    <div id="cat-list" class="d-flex py-3 mx-4 bcard">
+        <div class="col-6 my-auto">
+            <p class="text-center">Income</p>
+            <p class="text-center mb-0">&#8377 {{ amt_left }}</p>
         </div>
-        <div class="col-sm-6 mr-auto ml-0">
-            <canvas id="pie1" style="width:100%;max-width:700px;" style="border: 0;"></canvas>
-            <script>
+        <hr>
+        <div class="col-6">
+            <p class="text-center">Expenses</p>
+            <p class="text-center mb-0">&#8377 {{ spend }}</p>
+        </div>
+    </div>
+    <div class="col-sm-6 mr-auto ml-0">
+        <canvas id="pie1" style="width:100%;" style="border: 0;"></canvas>
+        <script>
             var xValues = [];
             var yValues = [];
             var barColors = [
@@ -67,7 +64,28 @@
                     }
                 }
             });
-            </script>
+        </script>
+    </div>
+    <div class="d-flex">
+        <div class="container main py-3">
+            {% for i in category_list %}
+                <div class="cat-list-card justify-content-around d-flex mb-3"
+                     data-pk="{{ i.pk }}"
+                     onclick="change(this)">
+                         <i class="fa {{i.img}} my-auto"></i>
+                    <div>
+                        {% load custom_tags%}
+                        <p class="cat-name mb-0">{{ i }}</p>
+                        
+                        <progress value="{% sub i.budget i.amt_left %}" max="{{i.budget}}">35%</progress>
+                        <p class="mb-0">Amount left:{{i.amt_left}}</p>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <p class="mb-1 mx-auto my-auto">Total</p>
+                        <p class="mb-0 my-auto">{{i.budget}}</p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}

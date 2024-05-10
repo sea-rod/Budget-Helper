@@ -21,4 +21,9 @@ def month_name(value):
     return dic[value]
 
 
+@register.simple_tag
+def sub(num1,num2):
+    return num1-num2
+
+
 register.filter("month_name", month_name)

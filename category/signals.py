@@ -8,11 +8,41 @@ from .models import category, category_info
 def create_default_categories(sender, instance, created, **kwargs):
     if created:
         categories = [
-            category(user=instance, name="Bills", budget=5000, amt_left=5000),
-            category(user=instance, name="Housing", budget=5000, amt_left=5000),
-            category(user=instance, name="Transportation", budget=5000, amt_left=5000),
-            category(user=instance, name="Groceries", budget=5000, amt_left=5000),
-            category(user=instance, name="Entertainment", budget=5000, amt_left=5000),
+            category(
+                user=instance,
+                name="Bills",
+                budget=5000,
+                amt_left=5000,
+                img="fa-dollar",
+            ),
+            category(
+                user=instance,
+                name="Housing",
+                budget=5000,
+                amt_left=5000,
+                img="fa-home",
+            ),
+            category(
+                user=instance,
+                name="Transportation",
+                budget=5000,
+                amt_left=5000,
+                img="fa-bus",
+            ),
+            category(
+                user=instance,
+                name="Groceries",
+                budget=5000,
+                amt_left=5000,
+                img="fa-shopping-cart",
+            ),
+            category(
+                user=instance,
+                name="Entertainment",
+                budget=5000,
+                amt_left=5000,
+                img="fa-film",
+            ),
         ]
         category.objects.bulk_create(categories)
 
