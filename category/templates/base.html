@@ -20,6 +20,7 @@
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="{% static 'css/regis.css' %}">
         <link rel="stylesheet" href="{% static 'css/home.css' %}">
+        <link rel="stylesheet" href="{% static 'css/card.css' %}">
         {% block additional %}
         {% endblock additional %}
         {% block meta %}
@@ -37,6 +38,7 @@
             </p>
         </div> -->
         <div id="content">
+            {% if user.is_authenticated %}
             <div class="pt-1" id="sidebar">
                 <div class="d-flex justify-content-between my-1 px-3 mx-2">
                     <a href="/" class=" d-flex flex-column ">
@@ -61,6 +63,7 @@
                     </a>
                 </div>
             </div>
+            {%endif%}
             {% block content %}
             {% endblock content %}
         </div>

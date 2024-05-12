@@ -34,8 +34,12 @@
     font-weight: bold;
 }
 
-.bcard .col-3{
-    font-size: 15px;
+.bcard p{
+    font-size: 17px;
+}
+
+.bcard .date{
+    color: #adadad;
 }
 
 /* category_list css  */
@@ -68,6 +72,14 @@
     font-size: 20px;
 }
 
+#cat-add{
+    border-radius: 15px;
+    background-color: #04D900;
+    color: #101010;
+    border: none;
+    padding: 2px 15px;
+    font-size: 20px;
+}
 progress{
     background-color: #00000080;
     block-size: 5px;

@@ -300,6 +300,11 @@ html,body {
     text-decoration: none;
     list-style-type: none;
     color: #e8e8e8;
+    transition: 0.5s;
+}
+
+#sidebar a:hover{
+    color: #b7b7b7;
 }
 
 .active{

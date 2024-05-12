@@ -6,8 +6,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     {% load static %}
     <script src="{% static 'js/script.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/card.css' %}">
-    <div id="cat-list" class="d-flex py-3 mx-4 bcard">
+    
+    <div id="cat-list" class="d-flex py-3 mx-4 bcard mt-4">
         <div class="col-6 my-auto">
             <p class="text-center">Income</p>
             <p class="text-center mb-0">&#8377 {{ amt_left }}</p>
@@ -19,13 +19,12 @@
         </div>
     </div>
     <div class="col-sm-6 mr-auto ml-0">
-        <canvas id="pie1" style="width:100%;" style="border: 0;"></canvas>
+        <canvas id="pie1" class="bcard my-3 pb-3" style="width:100%;height: 45vh;"></canvas>
         <script>
             var xValues = [];
             var yValues = [];
             var barColors = [
-                "#7CB9E8", "#00308F", "#72A0C1", "#002D62", "#6CB4EE", "#002D62", "#007FFF", "#89CFF0",
-                "#0066b2"];
+                "#04D900", "#03AD00", "#028A00", "#014500", "#4FE44C", "#0F2D0F",];
 
             var sum = 0;
 
@@ -40,7 +39,7 @@
             yValues.push(sum)
 
             new Chart("pie1", {
-                type: "pie",
+                type: "doughnut",
                 data: {
                     labels: xValues,
                     datasets: [{
@@ -66,23 +65,27 @@
             });
         </script>
     </div>
+    <div class="d-flex container mb-2">
+        <a href="{% url 'cat_add' %}" class="ml-auto">
+            <button id="cat-add">+ Add Category</button>
+        </a>
+    </div>
     <div class="d-flex">
         <div class="container main py-3">
             {% for i in category_list %}
                 <div class="cat-list-card justify-content-around d-flex mb-3"
                      data-pk="{{ i.pk }}"
                      onclick="change(this)">
-                         <i class="fa {{i.img}} my-auto"></i>
+                    <i class="fa {{ i.img }} my-auto"></i>
                     <div>
-                        {% load custom_tags%}
+                        {% load custom_tags %}
                         <p class="cat-name mb-0">{{ i }}</p>
-                        
-                        <progress value="{% sub i.budget i.amt_left %}" max="{{i.budget}}">35%</progress>
-                        <p class="mb-0">Amount left:{{i.amt_left}}</p>
+                        <progress value="{% sub i.budget i.amt_left %}" max="{{ i.budget }}">35%</progress>
+                        <p class="mb-0">Amount left:{{ i.amt_left }}</p>
                     </div>
                     <div class="d-flex flex-column">
                         <p class="mb-1 mx-auto my-auto">Total</p>
-                        <p class="mb-0 my-auto">{{i.budget}}</p>
+                        <p class="mb-0 my-auto">{{ i.budget }}</p>
                     </div>
                 </div>
             {% endfor %}

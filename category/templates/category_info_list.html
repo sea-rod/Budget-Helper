@@ -8,13 +8,11 @@
           content="Track and manage your spending history with Budget Helper App. View your total budget, left budget, and spent budget. Add and delete expenses by category.">
 {% endblock meta %}
 {% block additional %}
-
-   <!-- <script src="{% static 'js/script.js' %}"></script> -->
-    <link rel="stylesheet" href="{% static 'css/card.css' %}">
+    <!-- <script src="{% static 'js/script.js' %}"></script> -->
 {% endblock additional %}
 {% block content %}
-    <div class="container main mt-5 py-5 px-md-5 px-0">
-        <div class="bcard d-flex justify-content-around py-4 flex-wrap">
+    <div class="container main mt-5 py-5 px-md-5 px-2">
+        <div class="bcard d-flex justify-content-around py-4 flex-wrap mb-5">
             <div class="d-flex flex-column">
                 <p class="amt my-auto">&#8377 {{ budget|floatformat:3 }}</p>
                 <p class="mx-auto amt-label my-auto">Total budget</p>
@@ -49,13 +47,17 @@
             </a>
         {% endif %}
         {% for i in category_info_list %}
-            <div class="bcard justify-content-around d-flex flex-wrap py-2 mt-5">
-                <p class="col-3 text-center mx-auto my-auto">{{ i.item }}</p>
-                <p class="col-3 text-center mx-auto my-auto">{{ i.date|date:"d D M Y" }}</p>
-                <p class="col-3 text-center mx-auto my-auto">&#8377 {{ i.spend }}</p>
-                <div class="col-12 d-flex">
+            <div class="bcard d-flex flex-column px-5 py-3 mt-4">
+                <div class="d-flex">
+                    <p class="my-auto">{{ i.item }}</p>
+                    <p class="text-center date ml-auto my-auto">{{ i.date|date:"d D M Y" }}</p>
+                </div>
+                <div class="d-flex">
+                    <p class="my-auto">&#8377 {{ i.spend }}</p>
+                </div>
+                <div class="d-flex">
                     <a href="{% url 'cat_info_delete' i.pk %}"
-                       class="col-12 text-center my-auto btn-delete">Delete</a>
+                       class="ml-auto text-center my-auto btn-delete">Delete</a>
                 </div>
             </div>
         {% endfor %}
