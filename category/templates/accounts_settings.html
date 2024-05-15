@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block additional %}
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+{% endblock additional %}
+{% block title %}
+    About page - Budget Helper App
+{% endblock title %}
+{% block content %}
+    <div>
+        <a href="{% url 'edit_profile' user.pk %}" class="setting-card d-flex">
+            <i class="fa fa-user my-auto mr-2"></i>
+            <p class="my-auto px-3">User Infomation</p>
+        </a>
+        <a class="setting-card d-flex">
+            <i class="fa fa-user my-auto mr-2"></i>
+            <p class="my-auto px-3">Security and Privacy</p>
+        </a>
+    </div>
+    <a href="{% url 'logout' %}" class="d-flex mt-5">
+        <button class="logout-btn mx-auto">Logout</button>
+    </a>
+{% endblock content %}

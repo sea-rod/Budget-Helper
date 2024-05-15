@@ -8,6 +8,7 @@ from .views import (
     CatUpdateView,
     CatDeleteView,
     CatInfoAddView,
+    Settings
 )
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
     path("<int:pk>/category_info/", CatViewInfo.as_view(), name="info"),
     path("<int:pk>/category_update/", CatUpdateView.as_view(), name="cat_update"),
     path("<int:pk>/category_delete/", CatDeleteView.as_view(), name="cat_delete"),
+    path("settings/",Settings.as_view(),name="settings")
 ]

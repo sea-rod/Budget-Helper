@@ -1,0 +1,22 @@
+.setting-card{
+    color: rgb(241, 241, 241);
+    background-color: #303030;
+    padding: 20px 25px;
+    font-size: 25px;
+    border-top: 1px solid black;
+}
+
+.logout-btn{
+    border-radius: 10px;
+    color: #C91A1A;
+    background-color: #303030;
+    border: none;
+    padding: 5px 30px;
+    font-size: 20px;
+}
+a:hover{
+    color: #bdbdbd;
+}
+.add-text{
+    color: #1FE51B;
+}

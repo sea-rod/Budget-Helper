@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block additional %}
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+{% endblock additional %}
+{% block title %}
+    About page - Budget Helper App
+{% endblock title %}
+{% block content %}
+    <div>
+        <a href="{% url 'cat_add'  %}" class="setting-card d-flex">
+            <i class="fa fa-plus my-auto mr-2 add-text"></i>
+            <p class="my-auto px-3 add-text">add category</p>
+        </a>
+        {% for cat in category %}
+        <a href="{% url 'cat_update' cat.pk %}" class="setting-card d-flex">
+            <i class="fa {{ cat.img }} my-auto mr-2"></i>
+            <p class="my-auto px-3">{{ cat.name }}</p>
+        </a>
+        {% endfor %}
+    </div>
+{% endblock content %}

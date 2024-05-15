@@ -5,6 +5,7 @@ from django.views.generic import (
     DeleteView,
     UpdateView,
     DetailView,
+    TemplateView,
 )
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -115,3 +116,12 @@ class CatInfoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         return self.get_object().user == self.request.user
+
+class Settings(TemplateView):
+    template_name="settings.html"
+
+    def get_context_data(self, **kwargs ):
+        context = super().get_context_data(**kwargs)
+        data = category.objects.filter(user_id=self.request.user)
+        context['category'] = data
+        return context

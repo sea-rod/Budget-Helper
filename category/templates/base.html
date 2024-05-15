@@ -51,13 +51,12 @@
                     </a>
                     <a href="{% url 'cat_info_add' %}" class=" d-flex flex-column m-0 p-0">
                         <i class="fa fa-plus mx-auto my-auto nav-add"></i>
-                        <!-- <p class="text-white mx-auto my-0 nav-text">Home</p> -->
                     </a>
-                    <a href="#" class=" d-flex flex-column ">
+                    <a href="{% url 'settings' %}" class=" d-flex flex-column ">
                         <i class="fa fa-gear mx-auto"></i>
                         <p class="mt-auto my-0 nav-text">Settings</p>
                     </a>
-                    <a href="{% url 'edit_profile' user.id %}" class=" d-flex flex-column ">
+                    <a href="{% url 'accounts_settings' %}" class=" d-flex flex-column ">
                         <i class="fa fa-user mx-auto"></i>
                         <p class="mt-auto my-0 nav-text mx-auto">{{ user.username }}</p>
                     </a>
