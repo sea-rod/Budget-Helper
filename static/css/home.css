@@ -4,6 +4,30 @@ html,body {
     overflow-x:hidden;
 }
 
+.bg-gray{
+    background-color: #2E2E2E;
+}
+
+.navbar-brand{
+    color: rgb(232, 232, 232);
+}
+
+.green-border-btn{
+    color: rgb(242, 242, 242);
+    background-color: transparent;
+    border-radius: 20px;
+    padding: 5px 20px;
+    margin-right: 10px;
+    border: 1px solid #1FE51B;
+}
+.signup-btn{
+    color: #020402;
+    font-size: 16px;
+    padding: 5px 20px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
 #hero{
     background-image: url("../img/hero_bg.jpg");
     background-size:cover;
