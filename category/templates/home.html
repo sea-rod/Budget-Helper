@@ -1,55 +1,55 @@
 {% extends 'base.html' %}
-
 {% load static %}
-
 {% block title %}
-About page - Budget Helper App
+    About page - Budget Helper App
 {% endblock title %}
-
 {% block meta %}
-<meta name="description"
-    content="Learn more about Budget Helper App - a budget application based on categorical budgeting. Take control of your finances and manage your budget effectively.">
+    <meta name="description"
+          content="Learn more about Budget Helper App - a budget application based on categorical budgeting. Take control of your finances and manage your budget effectively.">
 {% endblock meta %}
-
 {% block content %}
-
-<nav class="navbar navbar-expand-lg  bg-gray">
-  <a class="navbar-brand ml-2" href="/">$Budget<b>Helper</b></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="green-border-btn" href="{% url 'login' %}">Login</a>
-        </li>
-      <li class="nav-item mt-3 mt-md-0">
-        <a class="submit-btn signup-btn" href="{% url 'signup' %}">Signup <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-
-<div class="text-white" id="about">
-    <div class="row m-0 mb-5 p-lg-5" id="hero">
-        <div class="col-lg-6 py-4 px-5">
-            <h1>Budget-Helper: Your Financial Journey Starts Here!</h1>
-            <p>
-                Welcome to Django Budget App, where financial empowerment meets simplicity.
-                Take the reins of your finances with our intuitive web-based budgeting
-                application. Whether you're a budgeting beginner or a seasoned pro, our
-                user-friendly interface and powerful features are designed to make managing
-                your money a breeze.
-            </p>
-            <button class="btn btn-primary mt-2">Get Started</button>
+    <nav class="navbar navbar-expand-lg  bg-gray">
+        <a class="navbar-brand ml-2" href="/">$Budget<b>Helper</b></a>
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon fa-bars fa"></span>
+        </button>
+        <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="green-border-btn" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item mt-3 mt-md-0">
+                    <a class="submit-btn signup-btn" href="{% url 'signup' %}">Signup <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
         </div>
-        <!-- <div class="col-lg-6">
-            <img src="{% static 'img/home.jpg' %}" alt="Budget Helper App Image">
-        </div> -->
-    </div>
-    <!-- <div class="row">
+    </nav>
+    <div class="text-white">
+        <div class="row m-0 mb-5 p-lg-5" id="hero">
+            <div class="col-lg-6 py-4 px-5">
+                <h1>Budget-Helper: Your Financial Journey Starts Here!</h1>
+                <p>
+                    Welcome to Django Budget App, where financial empowerment meets simplicity.
+                    Take the reins of your finances with our intuitive web-based budgeting
+                    application. Whether you're a budgeting beginner or a seasoned pro, our
+                    user-friendly interface and powerful features are designed to make managing
+                    your money a breeze.
+                </p>
+                <button class="btn btn-primary mt-2">Get Started</button>
+            </div>
+            <div class="col-lg-6">
+                <img class="" src="{% static 'img/phone.png' %}" alt="budget-img" />
+            </div>
+        </div>
+
+
+        <!-- <div class="row">
         <div class="col-lg-6">
 
             <h1>Budget-Helper App: Your Financial Journey Starts Here!</h1>
@@ -125,5 +125,5 @@ About page - Budget Helper App
             <img src="{% static 'img/home.jpg' %}" alt="Budget Helper App Image">
         </div>
     </div> -->
-</div>
+    </div>
 {% endblock content %}

@@ -12,6 +12,14 @@ html,body {
     color: rgb(232, 232, 232);
 }
 
+nav a:hover{
+    color: #bebebe;
+}
+
+a.signup-btn:hover{
+    color: #333333;
+}
+
 .green-border-btn{
     color: rgb(242, 242, 242);
     background-color: transparent;
@@ -28,16 +36,18 @@ html,body {
     margin-right: 10px;
 }
 
-#hero{
-    background-image: url("../img/hero_bg.jpg");
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.text-white{
+    color: #efefef;
 }
-#hero div{
-    background-color: #93c7ea75;    
-    border-radius: 20px;
+
+#hero {
+    background-color: transparent;    
 }
+
+#hero img{
+    border-radius: 10%;
+}
+
 #about .row {
     color: #1a1a1a;
     text-align: center;
@@ -50,14 +60,6 @@ html,body {
     font-size: 4vmax;
 }
 
-#about p {
-    color: #474747;
-}
-
-#about img {
-    height: 90%;
-    width: 100%;
-}
 
 #about .row:nth-child(even) {
     flex-direction: row-reverse;
