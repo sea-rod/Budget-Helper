@@ -36,7 +36,7 @@ a.signup-btn:hover{
     margin-right: 10px;
 }
 
-.text-white{
+.text-white,.title{
     color: #efefef;
 }
 
@@ -46,6 +46,16 @@ a.signup-btn:hover{
 
 #hero img{
     border-radius: 10%;
+}
+
+.hcard{
+    background-color: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.content{
+    color: rgb(168, 168, 168);
 }
 
 #about .row {

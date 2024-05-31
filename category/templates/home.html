@@ -30,100 +30,67 @@
             </ul>
         </div>
     </nav>
-    <div class="text-white">
+    <div class="text-white mt-5 pt-1">
         <div class="row m-0 mb-5 p-lg-5" id="hero">
-            <div class="col-lg-6 py-4 px-5">
+            <div class="col-lg-6 py-4 px-3 px-lg-5">
                 <h1>Budget-Helper: Your Financial Journey Starts Here!</h1>
-                <p>
+                <p class="text-justify">
                     Welcome to Django Budget App, where financial empowerment meets simplicity.
                     Take the reins of your finances with our intuitive web-based budgeting
                     application. Whether you're a budgeting beginner or a seasoned pro, our
                     user-friendly interface and powerful features are designed to make managing
                     your money a breeze.
                 </p>
-                <button class="btn btn-primary mt-2">Get Started</button>
+                <a href="{% url 'signup' %}">
+                    <button class="signup-btn submit-btn">Get Started</button>
+                </a>
             </div>
             <div class="col-lg-6">
                 <img class="" src="{% static 'img/phone.png' %}" alt="budget-img" />
             </div>
         </div>
-
-
-        <!-- <div class="row">
-        <div class="col-lg-6">
-
-            <h1>Budget-Helper App: Your Financial Journey Starts Here!</h1>
-            <p>
-                Welcome to Django Budget App, where financial empowerment meets simplicity.
-                Take the reins of your finances with our intuitive web-based budgeting
-                application. Whether you're a budgeting beginner or a seasoned pro, our
-                user-friendly interface and powerful features are designed to make managing
-                your money a breeze.
-            </p>
-        </div>
-        <div class="col-lg-6">
-            <img src="{% static 'img/home.jpg' %}" alt="Budget Helper App Image">
-        </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6">
-
-            <h2>Introduction</h2>
-            <p>
-                Welcome to Budget Helper App, your go-to solution for effective financial management. We are
-                dedicated
-                to
-                helping
-                individuals take control of their finances and make informed decisions about their money. With our
-                user-friendly
-                budgeting application, you can easily track your income and expenses, set budgets for different
-                categories,
-                and gain
-                valuable insights into your spending habits.
-            </p>
+    <div class="mt-2 text-justify">
+        <div class="row m-0 mb-5 p-lg-5 justify-content-between">
+            <div class="col-12 col-lg-3 hcard p-lg-0 p-3">
+                <div>
+                    <img height="230px" src="{% static 'img/expense.jpg' %}" alt="">
+                </div>
+                <div class="p">
+                    <p class="title">Expense Tracking</p>
+                    <p class="content">
+                        Keep track of every dollar with ease.Our
+                        app lets you catrgorize and mnitor your spending,ensuring
+                        you always know where your money is going
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3  hcard p-lg-0 p-3">
+                <div>
+                    <img src="{% static 'img/login-img.png' %}" alt="">
+                </div>
+                <div class="p">
+                    <p class="title">Budget Planning</p>
+                    <p class="content">
+                        Plan your finances effortlessly. Set goals and allocate funds
+                        to various categories, helping ypu stay within budget and
+                        achieve ypur financial objectives
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 hcard p-lg-0 p-3">
+                <div>
+                    <img src="{% static 'img/home.jpg' %}" alt="">
+                </div>
+                <div class="px">
+                    <p class="title">Financial Reporting and analysis</p>
+                    <p class="content">
+                        Gain insights into your spending habits. Our app provides
+                        detailed reports and visualizations, making it easy to
+                        understand and manage your finances effectively.
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <img src="{% static 'img/home.jpg' %}" alt="Budget Helper App Image">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-
-            <h2>Introduction</h2>
-            <p>
-                Welcome to Budget Helper App, your go-to solution for effective financial management. We are
-                dedicated
-                to
-                helping
-                individuals take control of their finances and make informed decisions about their money. With our
-                user-friendly
-                budgeting application, you can easily track your income and expenses, set budgets for different
-                categories,
-                and gain
-                valuable insights into your spending habits.
-            </p>
-        </div>
-        <div class="col-lg-6">
-            <img src="{% static 'img/home.jpg' %}" alt="Budget Helper App Image">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-
-            <h2>Introduction</h2>
-            <p>
-                Welcome to Budget Helper App, your go-to solution for effective financial management. We are
-                dedicated to helping individuals take control of their finances and make informed decisions about their
-                money. With our
-                user-friendly budgeting application, you can easily track your income and expenses, set budgets for
-                different
-                categories, and gain valuable insights into your spending habits.
-
-            </p>
-        </div>
-        <div class="col-lg-6">
-            <img src="{% static 'img/home.jpg' %}" alt="Budget Helper App Image">
-        </div>
-    </div> -->
     </div>
 {% endblock content %}

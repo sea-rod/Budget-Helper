@@ -114,6 +114,11 @@ a:hover {
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 19px;
+    transition: 0.5s;
+}
+
+.submit-btn:hover{
+    background-color: #159613;
 }
 
 @media (min-width: 1200px) {
