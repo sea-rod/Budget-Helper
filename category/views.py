@@ -8,6 +8,7 @@ from django.views.generic import (
     TemplateView,
 )
 from django.shortcuts import render
+from django.db.models import Sum
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .form import CatCreateForm, CatInfoForm
@@ -72,6 +73,17 @@ class CatViewInfo(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     def test_func(self):
         return self.get_object().user == self.request.user
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["sum_per_day"] = (
+            context["category"]
+            .cat_info.extra(select={"day": "date( date )"})
+            .values("day")
+            .annotate(day_sum=Sum("spend"))[:15]
+        )
+
+        return context
+
 
 class CatInfoListView(ListView):
     template_name = "category_info_list.html"
@@ -117,11 +129,12 @@ class CatInfoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         return self.get_object().user == self.request.user
 
-class Settings(TemplateView):
-    template_name="settings.html"
 
-    def get_context_data(self, **kwargs ):
+class Settings(TemplateView):
+    template_name = "settings.html"
+
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         data = category.objects.filter(user_id=self.request.user)
-        context['category'] = data
+        context["category"] = data
         return context

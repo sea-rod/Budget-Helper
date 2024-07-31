@@ -78,27 +78,27 @@ a.signup-btn:hover{
     align-content: space-between;
 }
 
-#footer {
-    background-color: #2d2d2d;
-    padding: 40px 0;
-    color: #767676;
-    position: relative;
-    margin-top: 300px;
-    text-align: justify;
-}
+    #footer {
+        background-color: #2d2d2d;
+        padding: 40px 0;
+        color: #767676;
+        position: relative;
+        margin-top: 300px;
+        text-align: justify;
+    }
 
-.social-media a,
-.social-media {
-    color: rgb(138, 138, 138);
-    margin-bottom: 20px;
-    font-size: 24px;
-    word-spacing: 3ch;
-}
+    .social-media a,
+    .social-media {
+        color: rgb(138, 138, 138);
+        margin-bottom: 20px;
+        font-size: 24px;
+        word-spacing: 3ch;
+    }
 
-.social-media a:hover {
-    color: #399ee2;
-    transition: 0.5s;
-}
+    .social-media a:hover {
+        color: #399ee2;
+        transition: 0.5s;
+    }
 
 /* new */
 .navbar .navbar-nav>a>i {
@@ -148,6 +148,7 @@ a.signup-btn:hover{
 
 #sidebar {
     /* top: 0; */
+  
     position: fixed;
     bottom: 0px;
     height: 60px;
@@ -187,6 +188,7 @@ a.signup-btn:hover{
 
 @media screen and (min-width: 480px) {
     #sidebar {
+            display: none;
             border-radius: 20px;
             top: 10%;
             height: 80%;

@@ -4,119 +4,69 @@
     Category Analytics - Budget Helper App
 {% endblock title %}
 {% block content %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    {% if category.category_info_set.all %}
-        <div class="row container m-0">
-            <canvas id="myChart"
-                    class="col-sm-6 mt-5"
-                    style="background-color: #0F2D0F;
-                           border-radius: 20px"></canvas>
-            <canvas id="pie" class="bcard my-3 pb-2"></canvas>
-        </div>
-        <script>
-    var xValues = []
-    var yValues = []
-    var color = "white"
-    // {% for obj in category.category_info_set.all %}
-    xValues.push("{{ obj.date|date:'d M' }}")
-    yValues.push({{ obj.spend }})
-    // {% endfor %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% if category.cat_info.all %}
+    <div class="mt-5 mx-2 mx-md-0" style="overflow-x: scroll">
+        <canvas class="row container mx-auto bg-gray mt-5" id="canvas_d" style="border-radius: 20px; width: 100%;">
+    </div>
 
+        </canvas>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        <script type="module">
 
-    console.log(xValues)
-    console.log(yValues)
+// Append the SVG element.
+var xValues = [];
+var yValues = [];
+var i = document.getElementById("canvas_d")
+// {% for i in sum_per_day  %}
 
-    new Chart("myChart", {
-        type: "line",
-        data: {
-            labels: xValues,
-            datasets: [{
-                label: "Spend per day",
-                lineTension: 0,
-                display: true,
-                fill: false,
-                backgroundColor: color,
-                borderColor: "rgba(254,254,254,0.7)",
-                data: yValues
-            }]
-        },
-        options: {
-            legend: {
-                labels: {
-                    fontColor: color,
-                    fontSize: 14,
-                }
-            },
-            scales: {
-                yAxes: [{
-                    gridLines: {
-                        color: color
-                    },
-                    ticks: {
-                        fontColor: color,
-                        fontSize: 14,
-                        beginAtZero: true
-                    },
-                    scaleLabel: {
-                        display: true,
-                        fontColor: color,
-                        fontSize: 14,
-                        labelString: 'Amount Spend (Rs)'
-                    }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        color: color
-                    },
-                    ticks: {
-                        fontColor: color,
-                        fontSize: 14,
-                        beginAtZero: true
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Day',
-                        fontColor: color,
-                        fontSize: 14,
-                    }
-                }],
-            },
-        }
-    });
-
-    // pie chart
-    var barColors = ["#0F2D0F", "#04D900"]
-    xValues = ["Amount Left", "Amount Spent"]
-    yValues = ["{{ category.amt_left }}", {{ category.budget }}-{{ category.amt_left }}]
-    new Chart("pie", {
-        type: "pie",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            legend: {
-                labels: {
-                    fontColor: "white",
-                    fontSize: 14,
-                }
-            },
-            title: {
-                display: true,
-                text: "{{category.name }} Analysis",
-                fontColor: "white",
-                fontSize: 14,
+           
+            yValues.push("{{ i.day_sum}}");
+            xValues.push("{{i.day|date:'d M' }}")
+           
+            // {% endfor %}
+            console.log(xValues,yValues)
+            const data = {
+                labels: ["jan","feb","march","april","may","june","july"],
+                 datasets: [{
+                    label: 'My First Dataset',
+                    data: yValues[65, 59, 80, 81, 56, 55, 40],
+                    }]
             }
-        }
-    });
-
-
+            Chart.defaults.color = '#fff';
+            // Chart.defaults.borderColor = '#';
+            new Chart(i, {
+                type: 'bar',
+                data:{
+                    labels: xValues,
+                    datasets: [{
+                        label:"Spending",    
+                        data: yValues,
+                        borderColor:'rgb(75, 192, 192)',
+                        tension:0.5,
+                        backgroundColor:'#04D900',
+                        maxBarThickness: 40,
+                        color:"#04D900"
+                    }],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks:{
+                                maxTicksLimit:4,
+                            }
+                        }
+                    }
+                },
+        })
         </script>
         <div class="container main mt-1 py-4">
-            {% for i in category.category_info_set.all %}
+<p class="text-white" style="color: aliceblue;">
+safaskjdf
+    {{object}}
+</p>
+            {% for i in category.cat_info.all%}
                 <div class="bcard d-flex flex-column px-5 py-2 mt-3">
                     <div class="d-flex">
                         <p class="my-auto">{{ i.item }}</p>
