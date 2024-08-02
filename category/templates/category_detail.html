@@ -6,8 +6,8 @@
 {% block content %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     {% if category.cat_info.all %}
-    <div class="mt-5 mx-2 mx-md-0" style="overflow-x: scroll">
-        <canvas class="row container mx-auto bg-gray mt-5" id="canvas_d" style="border-radius: 20px; width: 100%;">
+    <div class="mt-5 mx-2 mx-md-0">
+        <canvas class="row container mx-auto bg-gray mt-5" id="canvas_d" style="border-radius: 20px;">
     </div>
 
         </canvas>
@@ -61,12 +61,37 @@ var i = document.getElementById("canvas_d")
                 },
         })
         </script>
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
+        </scrip>
+        <div class="d-flex mx-2 my-2 mx-md-5 px-md-5">
+            <div class="ml-auto d-flex">
+                <form class="form ml-auto" method="get" action="{%url 'info' object.pk %}" data-toggle="tooltip" data-placement="top" title="To search date use date:dd/mm/yyyy">
+                    <button>
+                        <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
+                            <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                    <input class="input" name="search" placeholder="Type your text" required="" type="text">
+                    <button class="reset" type="reset">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
         <div class="container main mt-1 py-4">
-<p class="text-white" style="color: aliceblue;">
-safaskjdf
-    {{object}}
-</p>
-            {% for i in category.cat_info.all%}
+            {% if not page_obj %}
+                <p class="text-white mx-auto text-center">No result founds</p> 
+            {% endif %}
+            {% if search%}
+                <p class="text-white ml-1 h5">Search result:</p> 
+            {% endif %}
+            {% for i in page_obj%}
                 <div class="bcard d-flex flex-column px-5 py-2 mt-3">
                     <div class="d-flex">
                         <p class="my-auto">{{ i.item }}</p>
@@ -81,6 +106,35 @@ safaskjdf
                     </div>
                 </div>
             {% endfor %}
+            <div class="mt-3 d-flex text-white">
+                <div class="ml-auto">
+
+                    <div class="step-links">
+                        
+                        <div>
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                        </div>
+        
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            {% if search %}
+                                <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}">previous</a>
+                            {% else %}
+                                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            {% endif %}
+                        {% endif %}
+                        
+                        {% if page_obj.has_next %}
+                            {% if search %}
+                                <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}">next</a>
+                            {% else %}
+                                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            {% endif %}
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     {% else %}
         <a href="{% url 'cat_info_add' %}"
@@ -91,4 +145,6 @@ safaskjdf
             </div>
         </a>
     {% endif %}
+
+
 {% endblock content %}

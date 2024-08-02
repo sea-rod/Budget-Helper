@@ -1,4 +1,7 @@
+from django.db.models.query import QuerySet
+from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 from django.views.generic import (
     ListView,
     CreateView,
@@ -69,6 +72,19 @@ class CatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class CatViewInfo(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = category
     template_name = "category_detail.html"
+    query = None
+
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        search = request.GET.get("search")
+        if search:
+            query_list = search.split(":")
+            if len(query_list) > 1:
+                self.query = ...
+            # context = self.get_context_data()
+            self.query = self.get_object().cat_info.filter(
+                item__icontains=request.GET["search"]
+            )
+        return super().get(request, *args, **kwargs)
 
     def test_func(self):
         return self.get_object().user == self.request.user
@@ -80,6 +96,14 @@ class CatViewInfo(LoginRequiredMixin, UserPassesTestMixin, DetailView):
             .cat_info.extra(select={"day": "date( date )"})
             .values("day")
             .annotate(day_sum=Sum("spend"))[:15]
+        )
+        p = self.request.GET.get("page")
+        if self.query is not None:
+            context["page_obj"] = Paginator(self.query,2).get_page(p)
+            context["search"] = True
+            return context
+        context["page_obj"] = Paginator(context["category"].cat_info.all(), 5).get_page(
+            p
         )
 
         return context
